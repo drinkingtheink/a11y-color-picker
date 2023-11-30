@@ -6,6 +6,11 @@
       <label for="primary-color-select">Select your primary color:</label>
       <input type="color" id="primary-color-select" />
     </section>
+
+    <section class="secondary-select">
+      <label for="secondary-color-select">Select your secondary color:</label>
+      <input type="color" id="secondary-color-select" />
+    </section>
   </div>
 </template>
 
