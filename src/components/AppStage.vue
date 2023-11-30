@@ -2,8 +2,10 @@
   <div class="hello">
     <h1>A11y Color Picker</h1>
 
-    <label for="primary-color-select">Select your primary color:</label>
-    <input type="color" id="primary-color-select" />
+    <section class="primary-select">
+      <label for="primary-color-select">Select your primary color:</label>
+      <input type="color" id="primary-color-select" />
+    </section>
   </div>
 </template>
 
