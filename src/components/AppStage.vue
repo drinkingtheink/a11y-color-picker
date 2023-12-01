@@ -8,6 +8,10 @@
       <p>PRIMARY: {{ primary }}</p>
     </section>
 
+    <section v-if="selectionContrast" class="contrast">
+      <p>CONTRAST: {{ selectionContrast }}</p>
+    </section>
+
     <section class="secondary-select">
       <label for="secondary-color-select">Select your secondary color:</label>
       <input type="color" id="secondary-color-select" @input="handleSecondaryColorChange" />
@@ -17,6 +21,8 @@
 </template>
 
 <script>
+import chroma from "chroma-js";
+
 export default {
   name: 'AppStage',
   props: {
@@ -38,13 +44,13 @@ export default {
   },
   computed: {
     selectionContrast() {
-        let contrast = null;
+      let contrast = null;
 
-        if (this.primary && this.secondary) {
-            contrast = chroma.contrast(this.primary, this.secondary).toFixed(1);
-        }
+      if (this.primary && this.secondary) {
+          contrast = chroma.contrast(this.primary, this.secondary).toFixed(1);
+      }
 
-        return contrast;
+      return contrast;
     },
   },
 }
