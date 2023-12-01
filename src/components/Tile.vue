@@ -1,5 +1,5 @@
 <template>
-  <div class="color-tile" :class="{ 'isA11y': isA11y }" :style="`background-color: ${myColor}`">
+  <div class="color-tile" :class="{ 'isA11y': isA11y }" :style="`background-color: ${myColor}`" @click="handleTileClick(myColor, contrast)">
 		<p>{{ myColor }}</p>
 		<p>{{ contrast }}</p>
   </div>
@@ -45,6 +45,9 @@ export default {
 		getColor() {
 			this.myColor = chroma.random();
 		},
+		handleTileClick(color) {
+			this.$emit('colorSelected', color, this.contrast);
+		}
 	},
 	mounted() {
 		this.getColor();
@@ -80,6 +83,12 @@ export default {
 	width: var(--tileDim);
 	border: 2px solid;
 	margin: 5px 0 0 5px;
+	transition: all 0.2s;
+}
+
+.color-tile:hover {
+	cursor: pointer;
+	transform: scale(1.2);
 }
 
 .isA11y {

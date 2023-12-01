@@ -3,11 +3,18 @@
     <h3>Check out generated colors:</h3>
 
 		<section class="color-output">
-			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="selectedColor" :reColor="reColor">
+			<Tile 
+				v-for="color in countArr" 
+					:key="color" 
+					:a11yThresh="a11yThresh" 
+					:comparisonColor="selectedColor" 
+					:reColor="reColor"
+					@colorSelected="handleTileSelection"
+				>
 			</Tile>
 		</section>
 
-		<Button @click="reColor = true">Redo Colors</Button>
+		<button @click="reColor = true">Redo Colors</button>
   </div>
 </template>
 
@@ -48,8 +55,13 @@ export default {
     },
 		comparisonColor() {
 			this.getColor();
-		}
+		},
   },
+	methods: {
+		handleTileSelection(color, contrast) {
+			this.$emit('setSecondary', color, contrast);
+		},
+	}
 }
 </script>
 

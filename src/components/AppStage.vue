@@ -5,10 +5,15 @@
     <section class="primary-select">
       <label for="primary-color-select">Select your primary color:</label>
       <input type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
-      <p>PRIMARY: {{ primary }}</p>
+      <p v-if="primary">SELECTED: {{ primary }}</p>
+    </section>
+
+    <section v-if="secondary" class="secondary-select">
+      <label for="secondary-color-select">Selected secondary color:</label>
+      <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /></p>
     </section>
   </main>
-  <ColorGen v-if="primary" :selectedColor="primary" />
+  <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" />
 </template>
 
 <script>
@@ -25,11 +30,17 @@ export default {
   data() {
     return {
       primary: null,
+      secondary: null,
+      contrast: null,
     }
   },
   methods: {
     handlePrimaryColorChange(event) {
       this.primary = event.target.value;
+    },
+    handleSecondaryColorChange(color, contrast) {
+      this.secondary = color;
+      this.contrast = contrast;
     },
   },
 }
@@ -49,5 +60,10 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.sec-display {
+  width: 40px;
+  height: 40px;
 }
 </style>
