@@ -4,12 +4,14 @@
 
     <section class="primary-select">
       <label for="primary-color-select">Select your primary color:</label>
-      <input type="color" id="primary-color-select" />
+      <input type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
+      <p>PRIMARY: {{ primary }}</p>
     </section>
 
     <section class="secondary-select">
       <label for="secondary-color-select">Select your secondary color:</label>
-      <input type="color" id="secondary-color-select" />
+      <input type="color" id="secondary-color-select" @input="handleSecondaryColorChange" />
+      <p>SECONDARY: {{ secondary }}</p>
     </section>
   </div>
 </template>
@@ -19,6 +21,20 @@ export default {
   name: 'AppStage',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      primary: null,
+      secondary: null,
+    }
+  },
+  methods: {
+    handlePrimaryColorChange(event) {
+      this.primary = event.target.value;
+    },
+    handleSecondaryColorChange(event) {
+      this.secondary = event.target.value;
+    },
   }
 }
 </script>
