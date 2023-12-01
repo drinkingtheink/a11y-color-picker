@@ -35,7 +35,18 @@ export default {
     handleSecondaryColorChange(event) {
       this.secondary = event.target.value;
     },
-  }
+  },
+  computed: {
+    selectionContrast() {
+        let contrast = null;
+
+        if (this.primary && this.secondary) {
+            contrast = chroma.contrast(this.primary, this.secondary).toFixed(1);
+        }
+
+        return contrast;
+    },
+  },
 }
 </script>
 
