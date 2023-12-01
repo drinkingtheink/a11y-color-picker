@@ -1,5 +1,5 @@
 <template>
-  <div class="color-tile">
+  <div class="color-tile" :style="`background-color: ${myColor}`">
   </div>
 </template>
 
@@ -7,21 +7,33 @@
 export default {
   name: 'Tile',
   props: {
-		color: {
+		comparisonColor: {
 			type: String,
 		},
 		a11yThresh: {
 			type: Number,
-		}
+		},
   },
+	data() {
+		return {
+			myColor: null,
+		}
+	},
+	methods: {
+		getColor() {
+			this.myColor = 'red';
+		}
+	},
+	mounted() {
+		this.getColor();
+	}
 }
 </script>
 
 <style>
 :root {
-	--tileDim: 20px;
+	--tileDim: 100px;
 }
-
 
 .color-tile {
 	height: var(--tileDim);

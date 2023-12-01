@@ -3,7 +3,7 @@
     <h3>Check out generated colors:</h3>
 
 		<section class="color-output">
-			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh">
+			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="color">
 			</Tile>
 		</section>
   </div>
@@ -41,5 +41,10 @@ export default {
 </script>
 
 <style>
-
+.color-output {
+	display: flex;
+	justify-content: center;
+	max-width: 80vw;
+	margin: 0 auto;
+}
 </style>
