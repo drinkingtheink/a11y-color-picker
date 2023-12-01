@@ -3,9 +3,11 @@
     <h3>Check out generated colors:</h3>
 
 		<section class="color-output">
-			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="selectedColor">
+			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="selectedColor" :reColor="reColor">
 			</Tile>
 		</section>
+
+		<Button @click="reColor = true">Redo Colors</Button>
   </div>
 </template>
 
@@ -30,13 +32,24 @@ export default {
     return {
 			a11yThresh: 4.4,
 			countArr: [],
+			reColor: false,
     }
   },
 	mounted() {
 		for(let i = 0; i < this.count; i++){
 			this.countArr.push(`color-space-${i}`);
 		}
-	}
+	},
+	watch: {
+    reColor() {
+			setTimeout(() => {
+				this.reColor = false;
+			}, 100);
+    },
+		comparisonColor() {
+			this.getColor();
+		}
+  },
 }
 </script>
 

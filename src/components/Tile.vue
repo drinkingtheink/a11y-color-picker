@@ -17,6 +17,9 @@ export default {
 		a11yThresh: {
 			type: Number,
 		},
+		reColor: {
+			type: Boolean,
+		}
   },
 	data() {
 		return {
@@ -33,12 +36,15 @@ export default {
     },
 		comparisonColor() {
 			this.getColor();
-		}
+		},
+		reColor() {
+			if (this.reColor) this.getColor();
+		},
   },
 	methods: {
 		getColor() {
 			this.myColor = chroma.random();
-		}
+		},
 	},
 	mounted() {
 		this.getColor();
@@ -55,7 +61,7 @@ export default {
 		},
 		isA11y() {
 			if (this.contrast) {
-				return this.contrast > this.a11yThresh;
+				return this.contrast >= this.a11yThresh;
 			}
 
 			return false;
@@ -77,6 +83,6 @@ export default {
 }
 
 .isA11y {
-	transform: scale(1.4);
+	color: white;
 }
 </style>

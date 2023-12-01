@@ -8,7 +8,7 @@
       <p>PRIMARY: {{ primary }}</p>
     </section>
   </main>
-  <ColorGen :selectedColor="primary" />
+  <ColorGen v-if="primary" :selectedColor="primary" />
 </template>
 
 <script>
