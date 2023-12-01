@@ -1,9 +1,13 @@
 <template>
   <div class="color-tile" :style="`background-color: ${myColor}`">
+		<span>{{ myColor }}</span>
+		<span>{{ contrast }}</span>
   </div>
 </template>
 
 <script>
+import chroma from "chroma-js";
+
 export default {
   name: 'Tile',
   props: {
@@ -21,11 +25,22 @@ export default {
 	},
 	methods: {
 		getColor() {
-			this.myColor = 'red';
+			this.myColor = chroma.random();
 		}
 	},
 	mounted() {
 		this.getColor();
+	},
+	computed: {
+		contrast() {
+			let contrast = null;
+
+			if (this.myColor && this.comparisonColor) {
+				contrast = chroma.contrast(this.myColor, this.comparisonColor).toFixed(1);
+			}
+
+			return contrast;
+		}
 	}
 }
 </script>
@@ -39,5 +54,6 @@ export default {
 	height: var(--tileDim);
 	width: var(--tileDim);
 	border: 2px solid;
+	margin: 5px 0 0 5px;
 }
 </style>
