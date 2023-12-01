@@ -3,7 +3,7 @@
     <h3>Check out generated colors:</h3>
 
 		<section class="color-output">
-			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="color">
+			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh" :comparisonColor="selectedColor">
 			</Tile>
 		</section>
   </div>
@@ -19,7 +19,7 @@ export default {
 			type: Number,
 			default: 10,
 		},
-		color: {
+		selectedColor: {
 			type: String,
 		},
   },
