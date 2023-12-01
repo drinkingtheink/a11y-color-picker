@@ -3,7 +3,7 @@
     <h3>Check out generated colors:</h3>
 
 		<section class="color-output">
-			<Tile v-for="color in countArr" :key="color">
+			<Tile v-for="color in countArr" :key="color" :a11yThresh="a11yThresh">
 			</Tile>
 		</section>
   </div>
@@ -28,6 +28,7 @@ export default {
   },
   data() {
     return {
+			a11yThresh: 4.4,
 			countArr: [],
     }
   },

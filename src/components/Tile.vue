@@ -10,13 +10,16 @@ export default {
 		color: {
 			type: String,
 		},
+		a11yThresh: {
+			type: Number,
+		}
   },
 }
 </script>
 
 <style>
 :root {
---tileDim: 20px;
+	--tileDim: 20px;
 }
 
 
