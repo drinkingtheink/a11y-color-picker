@@ -8,8 +8,11 @@
       <p v-if="primary">SELECTED: {{ primary }}</p>
     </section>
 
+    <section v-if="contrast" class="contrast-display">
+      <p>CONTRAST: {{ contrast }}</p>
+    </section>
+
     <section v-if="secondary" class="secondary-select">
-      <label for="secondary-color-select">Selected secondary color:</label>
       <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /></p>
     </section>
   </main>
@@ -65,5 +68,6 @@ a {
 .sec-display {
   width: 40px;
   height: 40px;
+  display: inline-block;
 }
 </style>
