@@ -1,7 +1,7 @@
 <template>
-  <div class="color-tile" :style="`background-color: ${myColor}`">
-		<span>{{ myColor }}</span>
-		<span>{{ contrast }}</span>
+  <div class="color-tile" :class="{ 'isA11y': isA11y }" :style="`background-color: ${myColor}`">
+		<p>{{ myColor }}</p>
+		<p>{{ contrast }}</p>
   </div>
 </template>
 
@@ -23,6 +23,18 @@ export default {
 			myColor: null,
 		}
 	},
+	watch: {
+    myColor() {
+      if (this.contrast && this.contrast < this.a11yThresh) {
+				setTimeout(() => {
+					this.getColor();
+				}, 100);
+			}
+    },
+		comparisonColor() {
+			this.getColor();
+		}
+  },
 	methods: {
 		getColor() {
 			this.myColor = chroma.random();
@@ -40,6 +52,13 @@ export default {
 			}
 
 			return contrast;
+		},
+		isA11y() {
+			if (this.contrast) {
+				return this.contrast > this.a11yThresh;
+			}
+
+			return false;
 		}
 	}
 }
@@ -55,5 +74,9 @@ export default {
 	width: var(--tileDim);
 	border: 2px solid;
 	margin: 5px 0 0 5px;
+}
+
+.isA11y {
+	transform: scale(1.4);
 }
 </style>
