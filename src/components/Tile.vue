@@ -70,7 +70,7 @@ export default {
 		},
 		isA11y() {
 			if (this.contrast) {
-				return this.contrast >= this.userMinThresh;
+				return Number(this.contrast) >= Number(this.userMinThresh);
 			}
 
 			return false;

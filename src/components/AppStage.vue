@@ -16,7 +16,7 @@
     </section>
 
     <section v-if="secondary" class="secondary-select">
-      <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /></p>
+      <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /><button class="smol" @click="secondary = null">Deselect Color</button></p>
     </section>
   </main>
   <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" :a11yThresh="a11yThresh" :userMinThresh="userMinThresh" />
@@ -54,7 +54,7 @@ export default {
       this.contrast = contrast;
     },
     updateUserMinThresh(event) {
-      this.userMinThresh = event.target.value;
+      this.userMinThresh = Number(event.target.value);
     }
   },
 }
