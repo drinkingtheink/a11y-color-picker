@@ -5,12 +5,13 @@
 		<section class="color-output">
 			<Tile 
 				v-for="color in countArr" 
-					:key="color" 
-					:a11yThresh="a11yThresh" 
-					:comparisonColor="selectedColor" 
-					:reColor="reColor"
-					@colorSelected="handleTileSelection"
-				>
+				:key="color" 
+				:a11yThresh="a11yThresh" 
+				:comparisonColor="selectedColor" 
+				:reColor="reColor"
+				:userMinThresh="userMinThresh"
+				@colorSelected="handleTileSelection"
+			>
 			</Tile>
 		</section>
 
@@ -33,7 +34,10 @@ export default {
 		},
 		a11yThresh: {
 			type: Number,
-		}
+		},
+		userMinThresh: {
+			type: Number,
+		},
   },
 	components: {
     Tile

@@ -10,7 +10,8 @@
 
     <section class="contrast-display">
       <label for="set-min-contrast">Set the minimum desired contrast</label>
-      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" value="" />
+      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @change="updateUserMinThresh" />
+      <p>MIN CONTRAST: {{ userMinThresh }}</p>
       <p>CONTRAST: {{ contrast }}</p>
     </section>
 
@@ -18,7 +19,7 @@
       <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /></p>
     </section>
   </main>
-  <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" :a11yThresh="a11yThresh" />
+  <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" :a11yThresh="a11yThresh" :userMinThresh="userMinThresh" />
 </template>
 
 <script>
@@ -38,7 +39,11 @@ export default {
       secondary: null,
       contrast: null,
       a11yThresh: 4.4,
+      userMinThresh: null,
     }
+  },
+  mounted() {
+    this.userMinThresh = this.a11yThresh;
   },
   methods: {
     handlePrimaryColorChange(event) {
@@ -48,6 +53,9 @@ export default {
       this.secondary = color;
       this.contrast = contrast;
     },
+    updateUserMinThresh(event) {
+      this.userMinThresh = event.target.value;
+    }
   },
 }
 </script>

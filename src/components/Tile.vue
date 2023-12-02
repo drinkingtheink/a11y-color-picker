@@ -19,7 +19,10 @@ export default {
 		},
 		reColor: {
 			type: Boolean,
-		}
+		},
+		userMinThresh: {
+			type: Number,
+		},
   },
 	data() {
 		return {
