@@ -8,7 +8,9 @@
       <p v-if="primary">SELECTED: {{ primary }}</p>
     </section>
 
-    <section v-if="contrast" class="contrast-display">
+    <section class="contrast-display">
+      <label for="set-min-contrast">Set the minimum desired contrast</label>
+      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" value="" />
       <p>CONTRAST: {{ contrast }}</p>
     </section>
 
@@ -16,7 +18,7 @@
       <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /></p>
     </section>
   </main>
-  <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" />
+  <ColorGen v-if="primary" :selectedColor="primary" @setSecondary="handleSecondaryColorChange" :a11yThresh="a11yThresh" />
 </template>
 
 <script>
@@ -35,6 +37,7 @@ export default {
       primary: null,
       secondary: null,
       contrast: null,
+      a11yThresh: 4.4,
     }
   },
   methods: {

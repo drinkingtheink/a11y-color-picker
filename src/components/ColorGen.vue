@@ -31,13 +31,15 @@ export default {
 		selectedColor: {
 			type: String,
 		},
+		a11yThresh: {
+			type: Number,
+		}
   },
 	components: {
     Tile
   },
   data() {
     return {
-			a11yThresh: 4.4,
 			countArr: [],
 			reColor: false,
     }
