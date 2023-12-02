@@ -31,7 +31,7 @@ export default {
 	},
 	watch: {
     myColor() {
-      if (this.contrast && this.contrast < this.a11yThresh) {
+      if (this.contrast && this.contrast < this.userMinThresh) {
 				setTimeout(() => {
 					this.getColor();
 				}, 100);
@@ -42,6 +42,9 @@ export default {
 		},
 		reColor() {
 			if (this.reColor) this.getColor();
+		},
+		userMinThresh() {
+			this.getColor();
 		},
   },
 	methods: {
@@ -67,7 +70,7 @@ export default {
 		},
 		isA11y() {
 			if (this.contrast) {
-				return this.contrast >= this.a11yThresh;
+				return this.contrast >= this.userMinThresh;
 			}
 
 			return false;
