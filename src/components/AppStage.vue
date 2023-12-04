@@ -15,7 +15,7 @@
         <p class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
 
-      <p v-if="primary && secondary">CONTRAST: {{ contrast }}</p>
+      <p v-if="primary && secondary">CONTRAST: <span class="contrast-value">{{ contrast }}</span></p>
 
       <section class="color-select secondary-select">
         <p v-if="secondary">SECONDARY: {{ secondary }} <button class="smol" @click="secondary = null">X</button></p>
@@ -113,5 +113,10 @@ a {
 
 .primary-select .swatch:hover {
   cursor: zoom-in;
+}
+
+.contrast-value {
+  display: block;
+  font-size: 200%;
 }
 </style>

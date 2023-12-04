@@ -93,7 +93,7 @@ export default {
 }
 
 .color-tile:hover {
-	cursor: pointer;
+	cursor: zoom-in;
 	transform: scale(1.2);
 }
 
