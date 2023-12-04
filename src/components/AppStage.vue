@@ -7,7 +7,6 @@
         <label for="set-min-contrast">Set the minimum desired contrast</label>
         <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @change="updateUserMinThresh" />
         <p>MIN CONTRAST: {{ userMinThresh }}</p>
-        <p>CONTRAST: {{ contrast }}</p>
       </section>
 
       <section class="color-select primary-select">
@@ -16,8 +15,10 @@
         <p class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
 
+      <p v-if="primary && secondary">CONTRAST: {{ contrast }}</p>
+
       <section class="color-select secondary-select">
-        <p v-if="secondary">SECONDARY: {{ secondary }} <button class="smol" @click="secondary = null">Deselect Color</button></p>
+        <p v-if="secondary">SECONDARY: {{ secondary }} <button class="smol" @click="secondary = null">X</button></p>
         <p class="swatch" :style="`background-color: ${secondary}`" />
       </section>
 
@@ -107,9 +108,10 @@ a {
 
   height: var(--swatchDim);
   width: var(--swatchDim);
+  margin: 0 auto;
 }
 
-.color-select .swatch:hover {
+.primary-select .swatch:hover {
   cursor: zoom-in;
 }
 </style>
