@@ -2,13 +2,13 @@
   <main class="hello">
     <h1>A11y Color Picker</h1>
 
-    <div class="config">
-      <section class="contrast-display">
-        <label for="set-min-contrast">Set the minimum desired contrast</label>
-        <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @change="updateUserMinThresh" />
-        <p>MIN CONTRAST: {{ userMinThresh }}</p>
-      </section>
+    <section class="contrast-display">
+      <label for="set-min-contrast">Set the minimum desired contrast</label>
+      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @change="updateUserMinThresh" />
+      <p>MIN CONTRAST: {{ userMinThresh }}</p>
+    </section>
 
+    <div class="config">
       <section class="color-select primary-select">
         <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} {{ primary }}</p>
         <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
