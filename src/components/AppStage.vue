@@ -148,7 +148,7 @@ a {
 
 .contrast-value {
   display: block;
-  font-size: 200%;
+  font-size: 300%;
   margin-top: 1rem;
 }
 </style>
