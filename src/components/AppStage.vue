@@ -19,7 +19,7 @@
 
       <section class="color-select secondary-select">
         <p v-if="secondary">SECONDARY: {{ secondary }}</p>
-        <div class="swatch" :style="`background-color: ${secondary}`">
+        <div v-if="secondary" class="swatch" :style="`background-color: ${secondary}`">
           <button class="smol" @click="secondary = null">X</button>
         </div>
       </section>
@@ -106,7 +106,7 @@ a {
 .color-config {
   display: flex;
   justify-content: space-between;
-  width: 650px;
+  width: 550px;
   margin: 0 auto;
   background: #eaeaea;
   padding-bottom: 2rem;
@@ -126,6 +126,7 @@ a {
   border: 5px solid rgba(0,0,0, 0.3);
   border-radius: 50%;
   position: relative;
+  transition: all 1s;
 }
 
 .swatch button {
