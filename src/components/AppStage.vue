@@ -18,8 +18,10 @@
       <p v-if="primary && secondary">CONTRAST: <span class="contrast-value">{{ contrast }}</span></p>
 
       <section class="color-select secondary-select">
-        <p v-if="secondary">SECONDARY: {{ secondary }} <button class="smol" @click="secondary = null">X</button></p>
-        <p class="swatch" :style="`background-color: ${secondary}`" />
+        <p v-if="secondary">SECONDARY: {{ secondary }}</p>
+        <div class="swatch" :style="`background-color: ${secondary}`">
+          <button class="smol" @click="secondary = null">X</button>
+        </div>
       </section>
 
     </div>
@@ -82,6 +84,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --borRad: 10px;
+}
+
 h3 {
   margin: 40px 0 0;
 }
@@ -100,8 +106,11 @@ a {
 .color-config {
   display: flex;
   justify-content: space-between;
-  width: 800px;
+  width: 650px;
   margin: 0 auto;
+  background: #eaeaea;
+  padding-bottom: 2rem;
+  border-radius: var(--borRad);
 }
 
 .color-config section {
@@ -109,11 +118,19 @@ a {
 }
 
 .color-select .swatch {
-  --swatchDim: 50px;
+  --swatchDim: 60px;
 
   height: var(--swatchDim);
   width: var(--swatchDim);
   margin: 0 auto;
+  border: 5px solid rgba(0,0,0, 0.3);
+  border-radius: 50%;
+  position: relative;
+}
+
+.swatch button {
+  position: absolute;
+  top: 0; right: -30px;
 }
 
 .primary-select .swatch:hover {
