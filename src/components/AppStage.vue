@@ -109,7 +109,7 @@ a {
   width: 550px;
   margin: 0 auto;
   background: #eaeaea;
-  padding-bottom: 2rem;
+  padding: 0 2rem 2rem 2rem;
   border-radius: var(--borRad);
 }
 
