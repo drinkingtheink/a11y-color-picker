@@ -10,14 +10,15 @@
         <p>CONTRAST: {{ contrast }}</p>
       </section>
 
-      <section class="primary-select">
-        <label for="primary-color-select">Select your primary color:</label>
-        <input type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
-        <p v-if="primary">SELECTED: {{ primary }}</p>
+      <section class="color-select primary-select">
+        <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} {{ primary }}</p>
+        <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
+        <p class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
 
-      <section v-if="secondary" class="secondary-select">
-        <p>SECONDARY: {{ secondary }} <span class="sec-display" :style="`background-color: ${secondary}`" /><button class="smol" @click="secondary = null">Deselect Color</button></p>
+      <section class="color-select secondary-select">
+        <p v-if="secondary">SECONDARY: {{ secondary }} <button class="smol" @click="secondary = null">Deselect Color</button></p>
+        <p class="swatch" :style="`background-color: ${secondary}`" />
       </section>
 
     </div>
@@ -66,7 +67,12 @@ export default {
     },
     updateUserMinThresh(event) {
       this.userMinThresh = Number(event.target.value);
-    }
+    },
+    handlePrimaryClick() {
+      const swatch = document.getElementById('primary-color-select') || false;
+
+      if (swatch) swatch.click();
+    },
   },
 }
 </script>
@@ -87,12 +93,6 @@ a {
   color: #42b983;
 }
 
-.sec-display {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-}
-
 .config {
   display: flex;
   justify-content: space-between;
@@ -100,5 +100,16 @@ a {
 
 .config section {
   width: 30%;
+}
+
+.color-select .swatch {
+  --swatchDim: 50px;
+
+  height: var(--swatchDim);
+  width: var(--swatchDim);
+}
+
+.color-select .swatch:hover {
+  cursor: zoom-in;
 }
 </style>
