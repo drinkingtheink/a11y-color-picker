@@ -48,6 +48,14 @@ export default {
   mounted() {
     this.userMinThresh = this.a11yThresh;
   },
+  watch: {
+    primary() {
+			this.secondary = null;
+    },
+		comparisonColor() {
+			this.getColor();
+		},
+  },
   methods: {
     handlePrimaryColorChange(event) {
       this.primary = event.target.value;
