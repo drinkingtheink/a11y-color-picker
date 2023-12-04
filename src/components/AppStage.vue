@@ -3,12 +3,12 @@
     <h1>A11y Color Picker</h1>
 
     <section class="contrast-display">
-      <label for="set-min-contrast">Set the minimum desired contrast</label>
-      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @change="updateUserMinThresh" />
+      <label for="set-min-contrast">Set your minimum desired contrast (defaulted to a11y minimum):</label>
+      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @input="updateUserMinThresh" />
       <p>MIN CONTRAST: {{ userMinThresh }}</p>
     </section>
 
-    <div class="config">
+    <div class="color-config">
       <section class="color-select primary-select">
         <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} {{ primary }}</p>
         <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
@@ -54,6 +54,9 @@ export default {
     primary() {
 			this.secondary = null;
     },
+    userMinThresh() {
+			this.secondary = null;
+    },
 		comparisonColor() {
 			this.getColor();
 		},
@@ -94,12 +97,14 @@ a {
   color: #42b983;
 }
 
-.config {
+.color-config {
   display: flex;
   justify-content: space-between;
+  width: 800px;
+  margin: 0 auto;
 }
 
-.config section {
+.color-config section {
   width: 30%;
 }
 
@@ -115,8 +120,17 @@ a {
   cursor: zoom-in;
 }
 
+.contrast-display label {
+  display: block;
+}
+
+.contrast-display input {
+  margin-left: 10px;
+}
+
 .contrast-value {
   display: block;
   font-size: 200%;
+  margin-top: 1rem;
 }
 </style>

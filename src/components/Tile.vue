@@ -1,7 +1,7 @@
 <template>
   <div class="color-tile" :class="{ 'isA11y': isA11y }" :style="`background-color: ${myColor}`" @click="handleTileClick(myColor, contrast)">
 		<p>{{ myColor }}</p>
-		<p>{{ contrast }}</p>
+		<p class="contrast-display">{{ contrast }}</p>
   </div>
 </template>
 
@@ -99,5 +99,10 @@ export default {
 
 .isA11y {
 	color: white;
+}
+
+.color-tile .contrast-display {
+	font-size: 150%;
+	font-weight: bold;
 }
 </style>
