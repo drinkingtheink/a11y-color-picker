@@ -15,7 +15,7 @@
         <p v-show="!!primary" class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
 
-      <p v-if="primary && secondary">CONTRAST: <span class="contrast-value">{{ contrast }}</span></p>
+      <p>CONTRAST: <span class="contrast-value">{{ !!primary && !!secondary ? contrast : `??` }}</span></p>
 
       <section class="color-select secondary-select">
         <p v-if="secondary">SECONDARY: <span class="value-display">{{ secondary }}</span></p>
@@ -218,7 +218,7 @@ a {
 .contrast-value {
   display: block;
   font-size: 320%;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 .value-display {
