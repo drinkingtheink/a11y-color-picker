@@ -1,5 +1,5 @@
 <template>
-  <main class="hello">
+  <main class="fff">
     <h1>A11y Color Combinator</h1>
 
     <section class="contrast-display">
@@ -143,12 +143,17 @@ export default {
 
 <style>
 :root {
-  --borRad: 10px;
+  --borRad: 20px;
 }
 
 main {
   background-color: var(--primary, white);
   padding: 1rem 0 2rem 0;
+  border-bottom: 20px solid var(--secondary, white);
+}
+
+h1 {
+  color: var(--secondary, #333);
 }
 
 h3 {
@@ -174,6 +179,7 @@ a {
   background: #eaeaea;
   padding: 0 2rem 2rem 2rem;
   border-radius: var(--borRad);
+  box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
 }
 
 .color-config section {
@@ -211,8 +217,8 @@ a {
 
 .contrast-value {
   display: block;
-  font-size: 300%;
-  margin-top: 1rem;
+  font-size: 320%;
+  margin-top: 1.5rem;
 }
 
 .value-display {
