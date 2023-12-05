@@ -12,7 +12,7 @@
       <section class="color-select primary-select">
         <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} {{ primary }}</p>
         <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
-        <p class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
+        <p v-show="!!primary" class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
 
       <p v-if="primary && secondary">CONTRAST: <span class="contrast-value">{{ contrast }}</span></p>
@@ -61,7 +61,13 @@ export default {
   },
   watch: {
     primary() {
-			this.secondary = null;
+      let root = document.documentElement;
+      root.style.setProperty('--primary', this.primary);
+			this.secondary = null;   
+    },
+    secondary() {
+      let root = document.documentElement;
+      root.style.setProperty('--secondary', this.secondary);
     },
     userMinThresh() {
 			this.secondary = null;
@@ -138,6 +144,11 @@ export default {
 <style>
 :root {
   --borRad: 10px;
+}
+
+main {
+  background-color: var(--primary, white);
+  padding: 2rem 0 2rem 0;
 }
 
 h3 {
