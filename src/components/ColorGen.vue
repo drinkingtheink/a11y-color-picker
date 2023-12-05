@@ -10,6 +10,7 @@
 				:comparisonColor="selectedColor" 
 				:reColor="reColor"
 				:userMinThresh="userMinThresh"
+				:lightOrDark="lightOrDark"
 				@colorSelected="handleTileSelection"
 			>
 			</Tile>
@@ -37,6 +38,9 @@ export default {
 		},
 		userMinThresh: {
 			type: Number,
+		},
+		lightOrDark: {
+			type: Function,
 		},
   },
 	components: {

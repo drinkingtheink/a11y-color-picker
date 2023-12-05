@@ -1,5 +1,9 @@
 <template>
-  <div class="color-tile" :class="{ 'isA11y': isA11y }" :style="`background-color: ${myColor}`" @click="handleTileClick(myColor, contrast)">
+  <div class="color-tile" 
+		:class="[{ 'isA11y': isA11y }, lightOrDark(myColor)]"
+		:style="`background-color: ${myColor}`" 
+		@click="handleTileClick(myColor, contrast)"
+	>
 		<p>{{ myColor }}</p>
 		<p class="contrast-display">{{ contrast }}</p>
   </div>
@@ -22,6 +26,9 @@ export default {
 		},
 		userMinThresh: {
 			type: Number,
+		},
+		lightOrDark: {
+			type: Function,
 		},
   },
 	data() {
@@ -53,7 +60,7 @@ export default {
 		},
 		handleTileClick(color) {
 			this.$emit('colorSelected', color, this.contrast);
-		}
+		},
 	},
 	mounted() {
 		this.getColor();
@@ -90,6 +97,10 @@ export default {
 	border: 2px solid;
 	margin: 5px 0 0 5px;
 	transition: all 0.2s;
+}
+
+.color-tile.light {
+	color: rgba(0,0,0,0.6);
 }
 
 .color-tile:hover {
