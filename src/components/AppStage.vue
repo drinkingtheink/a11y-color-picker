@@ -10,7 +10,7 @@
 
     <div class="color-config">
       <section class="color-select primary-select">
-        <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} {{ primary }}</p>
+        <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} <span class="value-display">{{ primary }}</span></p>
         <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
         <p v-show="!!primary" class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
@@ -18,7 +18,7 @@
       <p v-if="primary && secondary">CONTRAST: <span class="contrast-value">{{ contrast }}</span></p>
 
       <section class="color-select secondary-select">
-        <p v-if="secondary">SECONDARY: {{ secondary }}</p>
+        <p v-if="secondary">SECONDARY: <span class="value-display">{{ secondary }}</span></p>
         <div v-if="secondary" class="swatch" :style="`background-color: ${secondary}`">
           <button class="smol" @click="secondary = null">X</button>
         </div>
@@ -148,7 +148,7 @@ export default {
 
 main {
   background-color: var(--primary, white);
-  padding: 2rem 0 2rem 0;
+  padding: 1rem 0 2rem 0;
 }
 
 h3 {
@@ -169,7 +169,7 @@ a {
 .color-config {
   display: flex;
   justify-content: space-between;
-  width: 550px;
+  width: 650px;
   margin: 0 auto;
   background: #eaeaea;
   padding: 0 2rem 2rem 2rem;
@@ -194,7 +194,7 @@ a {
 
 .swatch button {
   position: absolute;
-  top: 0; right: -30px;
+  top: 0; right: -15px;
 }
 
 .primary-select .swatch:hover {
@@ -214,4 +214,14 @@ a {
   font-size: 300%;
   margin-top: 1rem;
 }
+
+.value-display {
+  display: block;
+  padding: 0 1rem;
+  background-color: white;
+  font-weight: bold;
+  font-size: 120%;
+  border-radius: 5px;
+}
+
 </style>
