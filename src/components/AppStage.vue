@@ -4,7 +4,16 @@
 
     <section class="contrast-display">
       <label for="set-min-contrast">Set your minimum desired contrast (defaulted to a11y minimum):</label>
-      <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @input="updateUserMinThresh" />
+      <input 
+        type="range" 
+        id="min-contrast" 
+        name="min-contrast" 
+        min="4.4" 
+        max="16" 
+        step="0.1"
+        :value="userMinThresh" 
+        @input="updateUserMinThresh" 
+      />
       <p class="min-contrast-display">MIN CONTRAST: {{ userMinThresh }}</p>
     </section>
 
@@ -193,7 +202,8 @@ button {
 
 button:hover {
   cursor: pointer;
-  color: white;
+  color: #222;
+  background-color: white;
 }
 
 .color-config {
