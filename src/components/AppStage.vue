@@ -5,12 +5,12 @@
     <section class="contrast-display">
       <label for="set-min-contrast">Set your minimum desired contrast (defaulted to a11y minimum):</label>
       <input type="range" id="min-contrast" name="min-contrast" min="4.4" max="16" :value="userMinThresh" @input="updateUserMinThresh" />
-      <p>MIN CONTRAST: {{ userMinThresh }}</p>
+      <p class="min-contrast-display">MIN CONTRAST: {{ userMinThresh }}</p>
     </section>
 
     <div class="color-config">
       <section class="color-select primary-select">
-        <p>{{ !!primary ? `SELECTED:` : `SELECT A COLOR` }} <span class="value-display">{{ primary }}</span></p>
+        <p>{{ !!primary ? `PRIMARY:` : `SELECT A COLOR` }} <span class="value-display">{{ primary }}</span></p>
         <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
         <p v-show="!!primary" class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
       </section>
@@ -18,9 +18,12 @@
       <p>CONTRAST: <span class="contrast-value">{{ !!primary && !!secondary ? contrast : `??` }}</span></p>
 
       <section class="color-select secondary-select">
-        <p v-if="secondary">SECONDARY: <span class="value-display">{{ secondary }}</span></p>
+        <p>SECONDARY: <span class="value-display">{{ secondary }}</span></p>
         <div v-if="secondary" class="swatch" :style="`background-color: ${secondary}`">
           <button class="smol" @click="secondary = null">X</button>
+        </div>
+        <div v-if="!!primary && !secondary" class="select-secondary-prompt">
+          <p>Select a color from the generated options.</p>
         </div>
       </section>
 
@@ -146,6 +149,10 @@ export default {
   --borRad: 20px;
 }
 
+* {
+  transition: all 0.2s;
+}
+
 main {
   background-color: var(--primary, white);
   padding: 1rem 0 2rem 0;
@@ -159,16 +166,33 @@ h1 {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
+}
+
+button {
+  background: #222;
+  color: var(--primary, white);
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-radius: var(--borRad);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .color-config {
@@ -186,6 +210,10 @@ a {
   width: 30%;
 }
 
+.color-config label, .color-config p {
+  font-weight: bold;
+}
+
 .color-select .swatch {
   --swatchDim: 60px;
 
@@ -200,7 +228,8 @@ a {
 
 .swatch button {
   position: absolute;
-  top: 0; right: -15px;
+  top: 0; right: -3.5rem;
+  font-size: 0.8rem;
 }
 
 .primary-select .swatch:hover {
@@ -230,4 +259,11 @@ a {
   border-radius: 5px;
 }
 
+.min-contrast-display {
+  font-weight: bold;
+}
+
+.select-secondary-prompt {
+  padding-top: 5%;
+}
 </style>

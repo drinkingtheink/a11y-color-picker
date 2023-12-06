@@ -28,7 +28,7 @@ export default {
   props: {
     count: {
 			type: Number,
-			default: 10,
+			default: 6,
 		},
 		selectedColor: {
 			type: String,
