@@ -1,6 +1,6 @@
 <template>
   <main class="fff">
-    <h1>A11y Color Combinator</h1>
+    <h1>A11y Color Combos</h1>
 
     <section class="contrast-display">
       <label for="set-min-contrast">Set your minimum desired contrast (defaulted to a11y minimum):</label>
