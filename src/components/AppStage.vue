@@ -193,6 +193,7 @@ button {
 
 button:hover {
   cursor: pointer;
+  color: white;
 }
 
 .color-config {
@@ -228,8 +229,9 @@ button:hover {
 
 .swatch button {
   position: absolute;
-  top: 0; right: -3.5rem;
+  top: 0; right: -2.5rem;
   font-size: 0.8rem;
+  padding: 5px 10px;
 }
 
 .primary-select .swatch:hover {
