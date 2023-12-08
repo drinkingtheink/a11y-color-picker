@@ -24,14 +24,14 @@
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
       </section>
 
-      <p>CONTRAST: <span class="contrast-value">{{ !!base && !!secondary ? contrast : `??` }}</span></p>
+      <p>CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
 
-      <section class="color-select secondary-select">
-        <p>SECONDARY: <span class="value-display">{{ secondary }}</span></p>
-        <div v-if="secondary" class="swatch" :style="`background-color: ${secondary}`">
-          <button class="smol" @click="secondary = null">X</button>
+      <section class="color-select overlay-select">
+        <p>OVERLAY: <span class="value-display">{{ overlay }}</span></p>
+        <div v-if="overlay" class="swatch" :style="`background-color: ${overlay}`">
+          <button class="smol" @click="overlay = null">X</button>
         </div>
-        <div v-if="!!base && !secondary" class="select-secondary-prompt">
+        <div v-if="!!base && !overlay" class="select-overlay-prompt">
           <p>Select a color from the generated options.</p>
         </div>
       </section>
@@ -44,7 +44,7 @@
     :a11yThresh="a11yThresh" 
     :userMinThresh="userMinThresh"
     :lightOrDark="lightOrDark"
-    @setSecondary="handleSecondaryColorChange" 
+    @setOverlay="handleOverlayColorChange" 
   />
   <section class="gallery">
     <h2>Examples Gallery</h2>
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       base: null,
-      secondary: null,
+      overlay: null,
       contrast: null,
       a11yThresh: 4.4,
       userMinThresh: null,
@@ -83,14 +83,14 @@ export default {
     base() {
       let root = document.documentElement;
       root.style.setProperty('--base', this.base);
-			this.secondary = null;   
+			this.overlay = null;   
     },
-    secondary() {
+    overlay() {
       let root = document.documentElement;
-      root.style.setProperty('--secondary', this.secondary);
+      root.style.setProperty('--overlay', this.overlay);
     },
     userMinThresh() {
-			this.secondary = null;
+			this.overlay = null;
     },
 		comparisonColor() {
 			this.getColor();
@@ -100,8 +100,8 @@ export default {
     handleBaseColorChange(event) {
       this.base = event.target.value;
     },
-    handleSecondaryColorChange(color, contrast) {
-      this.secondary = color;
+    handleOverlayColorChange(color, contrast) {
+      this.overlay = color;
       this.contrast = contrast;
     },
     updateUserMinThresh(event) {
@@ -184,7 +184,7 @@ export default {
 }
 
 .text-1 h3, .text-1 p {
-  color: var(--secondary);
+  color: var(--overlay);
   padding-top: 0;
   margin-top: 1rem;
 }
@@ -196,11 +196,11 @@ export default {
 main {
   background-color: var(--base, white);
   padding: 1rem 0 2rem 0;
-  border-bottom: 20px solid var(--secondary, white);
+  border-bottom: 20px solid var(--overlay, white);
 }
 
 h1 {
-  color: var(--secondary, #333);
+  color: var(--overlay, #333);
 }
 
 h3 {
@@ -311,7 +311,7 @@ label, p {
   font-weight: bold;
 }
 
-.select-secondary-prompt {
+.select-overlay-prompt {
   padding-top: 5%;
 }
 </style>
