@@ -1,5 +1,5 @@
 <template>
-  <main class="fff">
+  <main>
     <h1>A11y Color Combos</h1>
 
     <section class="contrast-display">
@@ -18,20 +18,20 @@
     </section>
 
     <div class="color-config">
-      <section class="color-select primary-select">
-        <p>{{ !!primary ? `PRIMARY:` : `SELECT A COLOR` }} <span class="value-display">{{ primary }}</span></p>
-        <input v-show="!primary" type="color" id="primary-color-select" @input="handlePrimaryColorChange" />
-        <p v-show="!!primary" class="swatch" :style="`background-color: ${primary}`" @click="handlePrimaryClick" />
+      <section class="color-select base-select">
+        <p>{{ !!base ? `BASE COLOR` : `SELECT A COLOR` }} <span class="value-display">{{ base }}</span></p>
+        <input v-show="!base" type="color" id="base-color-select" @input="handleBaseColorChange" />
+        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
       </section>
 
-      <p>CONTRAST: <span class="contrast-value">{{ !!primary && !!secondary ? contrast : `??` }}</span></p>
+      <p>CONTRAST: <span class="contrast-value">{{ !!base && !!secondary ? contrast : `??` }}</span></p>
 
       <section class="color-select secondary-select">
         <p>SECONDARY: <span class="value-display">{{ secondary }}</span></p>
         <div v-if="secondary" class="swatch" :style="`background-color: ${secondary}`">
           <button class="smol" @click="secondary = null">X</button>
         </div>
-        <div v-if="!!primary && !secondary" class="select-secondary-prompt">
+        <div v-if="!!base && !secondary" class="select-secondary-prompt">
           <p>Select a color from the generated options.</p>
         </div>
       </section>
@@ -39,13 +39,21 @@
     </div>
   </main>
   <ColorGen 
-    v-if="primary" 
-    :selectedColor="primary" 
+    v-if="base" 
+    :selectedColor="base" 
     :a11yThresh="a11yThresh" 
     :userMinThresh="userMinThresh"
     :lightOrDark="lightOrDark"
     @setSecondary="handleSecondaryColorChange" 
   />
+  <section class="gallery">
+    <h2>Examples Gallery</h2>
+
+    <div class="text text-1">
+      <h3>Checkout this Headline</h3>
+      <p>With this color combination, no less. With this color combination, no less. With this color combination, no less. With this color combination, no less.</p>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -61,7 +69,7 @@ export default {
   },
   data() {
     return {
-      primary: null,
+      base: null,
       secondary: null,
       contrast: null,
       a11yThresh: 4.4,
@@ -72,9 +80,9 @@ export default {
     this.userMinThresh = this.a11yThresh;
   },
   watch: {
-    primary() {
+    base() {
       let root = document.documentElement;
-      root.style.setProperty('--primary', this.primary);
+      root.style.setProperty('--base', this.base);
 			this.secondary = null;   
     },
     secondary() {
@@ -89,8 +97,8 @@ export default {
 		},
   },
   methods: {
-    handlePrimaryColorChange(event) {
-      this.primary = event.target.value;
+    handleBaseColorChange(event) {
+      this.base = event.target.value;
     },
     handleSecondaryColorChange(color, contrast) {
       this.secondary = color;
@@ -99,8 +107,8 @@ export default {
     updateUserMinThresh(event) {
       this.userMinThresh = Number(event.target.value);
     },
-    handlePrimaryClick() {
-      const swatch = document.getElementById('primary-color-select') || false;
+    handleBaseClick() {
+      const swatch = document.getElementById('base-color-select') || false;
 
       if (swatch) swatch.click();
     },
@@ -158,12 +166,35 @@ export default {
   --borRad: 20px;
 }
 
+.gallery {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 20rem;
+}
+
+.gallery div {
+  padding: 2rem;
+}
+
+.text-1 {
+  background-color: var(--base);
+  text-align: left;
+  width: 450px;
+  font-size: 120%;
+}
+
+.text-1 h3, .text-1 p {
+  color: var(--secondary);
+  padding-top: 0;
+  margin-top: 1rem;
+}
+
 * {
   transition: all 0.2s;
 }
 
 main {
-  background-color: var(--primary, white);
+  background-color: var(--base, white);
   padding: 1rem 0 2rem 0;
   border-bottom: 20px solid var(--secondary, white);
 }
@@ -174,6 +205,11 @@ h1 {
 
 h3 {
   margin: 40px 0 0;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 ul {
@@ -192,7 +228,7 @@ a {
 
 button {
   background: #222;
-  color: var(--primary, white);
+  color: var(--base, white);
   border: none;
   padding: 10px 20px;
   text-transform: uppercase;
@@ -212,7 +248,7 @@ button:hover {
   width: 650px;
   margin: 0 auto;
   background: #eaeaea;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem 1rem 2rem;
   border-radius: var(--borRad);
   box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
 }
@@ -221,7 +257,7 @@ button:hover {
   width: 30%;
 }
 
-.color-config label, .color-config p {
+label, p {
   font-weight: bold;
 }
 
@@ -244,7 +280,7 @@ button:hover {
   padding: 5px 10px;
 }
 
-.primary-select .swatch:hover {
+.base-select .swatch:hover {
   cursor: zoom-in;
 }
 
