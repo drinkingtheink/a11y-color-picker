@@ -27,21 +27,21 @@ export default {
   name: 'ColorGen',
   props: {
     count: {
-			type: Number,
-			default: 6,
-		},
-		selectedColor: {
-			type: String,
-		},
-		a11yThresh: {
-			type: Number,
-		},
-		userMinThresh: {
-			type: Number,
-		},
-		lightOrDark: {
-			type: Function,
-		},
+		type: Number,
+		default: 6,
+	},
+	selectedColor: {
+		type: String,
+	},
+	a11yThresh: {
+		type: Number,
+	},
+	userMinThresh: {
+		type: Number,
+	},
+	lightOrDark: {
+		type: Function,
+	},
   },
 	components: {
     Tile
@@ -69,7 +69,7 @@ export default {
   },
 	methods: {
 		handleTileSelection(color, contrast) {
-			this.$emit('setSecondary', color, contrast);
+			this.$emit('setOverlay', color, contrast);
 		},
 	}
 }
