@@ -1,5 +1,5 @@
 <template>
-  <main :class="[lightOrDark(base)]">
+  <main :class="lightOrDark(base)">
     <div class="top-border" />
     <h1>A11y Color Combinator</h1>
 
