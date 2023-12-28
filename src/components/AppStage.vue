@@ -37,6 +37,10 @@
         </div>
       </section>
 
+      <section class="color-actions">
+        <button v-show="!!base && !!overlay" id="copy-css">Copy CSS</button>
+        <button v-show="!!base && !!overlay" id="swap">Swap Base and Overlay</button>
+      </section>
     </div>
   </main>
   <ColorGen 
@@ -52,7 +56,7 @@
 
     <div class="text text-1">
       <h3>Checkout this Headline</h3>
-      <p>With this color combination, no less. With this color combination, no less. With this color combination, no less. With this color combination, no less.</p>
+      <p>{{ blurb1 }}</p>
     </div>
   </section>
 </template>
@@ -75,6 +79,7 @@ export default {
       contrast: null,
       a11yThresh: 4.4,
       userMinThresh: null,
+      blurb1: '"While color contrast is often primarily an aesthetic choice, the use of color on a website pertains to using color to communicate information. WCAG guideline 1.4.1 on the use of color requires that "color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element."',
     }
   },
   mounted() {
@@ -173,7 +178,7 @@ export default {
 
 .top-border {
   height: 10px;
-  background-color: var(--overlay, transparent);
+  background-color: var(--overlay, --base, transparent);
 }
 
 h1 {
@@ -213,7 +218,7 @@ h1 {
 
 main {
   background-color: var(--base, white);
-  padding: 0;
+  padding-bottom: 2rem;
 }
 
 h1 {
@@ -245,7 +250,7 @@ a {
 
 button {
   background: #222;
-  color: var(--base, white);
+  color: var(--overlay, white);
   border: none;
   padding: 10px 20px;
   text-transform: uppercase;
@@ -261,6 +266,7 @@ button:hover {
 
 .color-config {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 650px;
   margin: 0 auto;
@@ -272,6 +278,15 @@ button:hover {
 
 .color-config section {
   width: 30%;
+}
+
+.color-config section.color-actions {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.color-actions button {
+  transform: scale(0.8);
 }
 
 label, p {
