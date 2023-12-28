@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>A11y Color Combos</h1>
+    <h1>A11y Color Combinator</h1>
 
     <section class="contrast-display">
       <label for="set-min-contrast">Set your minimum desired contrast (defaulted to a11y minimum):</label>
@@ -166,6 +166,10 @@ export default {
   --borRad: 20px;
 }
 
+h1 {
+  color: var(--overlay, #222);
+}
+
 .gallery {
   width: 80%;
   margin: 0 auto;
@@ -314,4 +318,11 @@ label, p {
 .select-overlay-prompt {
   padding-top: 5%;
 }
+
+#app,
+.color-generator,
+.gallery {
+  background-color: var(--base, #FFF);
+}
+
 </style>
