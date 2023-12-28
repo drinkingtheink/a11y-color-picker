@@ -38,7 +38,7 @@
       </section>
 
       <section class="color-actions">
-        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">Copy CSS</button>
+        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
         <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Base and Overlay</button>
       </section>
     </div>
@@ -79,6 +79,7 @@ export default {
       contrast: null,
       a11yThresh: 4.4,
       userMinThresh: null,
+      copyCssVerb: 'copy CSS',
       blurb1: '"While color contrast is often primarily an aesthetic choice, the use of color on a website pertains to using color to communicate information. WCAG guideline 1.4.1 on the use of color requires that "color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element."',
     }
   },
@@ -123,6 +124,12 @@ export default {
         if (result.state === 'granted' || result.state === 'prompt') {
           navigator.clipboard.writeText(this.cssBlob);
           // alert uses it's been copied
+
+          this.copyCssVerb = 'COPIED!';
+
+          setTimeout(() => {
+            this.copyCssVerb = 'Copy CSS';
+          }, '2000');
         }
       });
     },
