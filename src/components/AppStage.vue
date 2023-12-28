@@ -4,7 +4,7 @@
     <h1>A11y Color Combinator</h1>
 
     <section class="contrast-display">
-      <label for="set-min-contrast">Set your minimum desired contrast (defaulted to WCAG minimum):</label>
+      <label for="set-min-contrast">Set your minimum desired contrast (cannot go below WCAG minimum):</label>
       <input 
         type="range" 
         id="min-contrast" 
