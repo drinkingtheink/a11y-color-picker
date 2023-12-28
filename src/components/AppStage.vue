@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main :class="[lightOrDark(base)]">
     <h1>A11y Color Combinator</h1>
 
     <section class="contrast-display">
@@ -166,8 +166,16 @@ export default {
   --borRad: 20px;
 }
 
+* {
+  transition: all 0.3s;
+}
+
 h1 {
   color: var(--overlay, #222);
+}
+
+.dark h1 {
+  color: white;
 }
 
 .gallery {
@@ -200,7 +208,6 @@ h1 {
 main {
   background-color: var(--base, white);
   padding: 1rem 0 2rem 0;
-  border-bottom: 20px solid var(--overlay, white);
 }
 
 h1 {
@@ -292,6 +299,10 @@ label, p {
   display: block;
 }
 
+.dark .contrast-display label {
+  color: white;
+}
+
 .contrast-display input {
   margin-left: 10px;
 }
@@ -313,6 +324,10 @@ label, p {
 
 .min-contrast-display {
   font-weight: bold;
+}
+
+.dark .min-contrast-display {
+  color: white;
 }
 
 .select-overlay-prompt {
