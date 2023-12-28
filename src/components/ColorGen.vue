@@ -80,6 +80,6 @@ export default {
 	display: flex;
 	justify-content: center;
 	max-width: 80vw;
-	margin: 0 auto;
+	margin: 0 auto 1rem auto;
 }
 </style>
