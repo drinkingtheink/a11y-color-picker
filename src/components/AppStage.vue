@@ -1,5 +1,6 @@
 <template>
   <main :class="[lightOrDark(base)]">
+    <div class="top-border" />
     <h1>A11y Color Combinator</h1>
 
     <section class="contrast-display">
@@ -170,6 +171,11 @@ export default {
   transition: all 0.3s;
 }
 
+.top-border {
+  height: 10px;
+  background-color: var(--overlay, transparent);
+}
+
 h1 {
   color: var(--overlay, #222);
 }
@@ -207,7 +213,7 @@ h1 {
 
 main {
   background-color: var(--base, white);
-  padding: 1rem 0 1rem 0;
+  padding: 0;
 }
 
 h1 {
