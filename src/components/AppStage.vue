@@ -112,14 +112,19 @@ export default {
     },
     swapBaseOverlay() {
       console.log(`SWAPPING _++++++++++++++++`);
-      const currOverlay = this.overlay;
-      const currBase = this.base;
+      const currOverlay = String(this.overlay);
+      const currBase = String(this.base);
 
       this.overlay = currBase;
       this.base = currOverlay;
     },
     copyCssBlob() {
-      alert(this.cssBlob);
+      navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+        if (result.state === 'granted' || result.state === 'prompt') {
+          navigator.clipboard.writeText(this.cssBlob);
+          // alert uses it's been copied
+        }
+      });
     },
     updateUserMinThresh(event) {
       this.userMinThresh = Number(event.target.value);
@@ -181,6 +186,14 @@ export default {
         :root {
           --base: ${this.base};
           --overlay: ${this.overlay};
+        }
+
+        h1, h2, h3, h4, h5, p, span, div {
+          color: var(--overlay);
+        }
+
+        .base {
+          background-color: var(--base);
         }
       `
 
