@@ -38,8 +38,8 @@
       </section>
 
       <section class="color-actions">
-        <button v-show="!!base && !!overlay" id="copy-css">Copy CSS</button>
-        <button v-show="!!base && !!overlay" id="swap">Swap Base and Overlay</button>
+        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">Copy CSS</button>
+        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Base and Overlay</button>
       </section>
     </div>
   </main>
@@ -110,6 +110,17 @@ export default {
       this.overlay = color;
       this.contrast = contrast;
     },
+    swapBaseOverlay() {
+      console.log(`SWAPPING _++++++++++++++++`);
+      const currOverlay = this.overlay;
+      const currBase = this.base;
+
+      this.overlay = currBase;
+      this.base = currOverlay;
+    },
+    copyCssBlob() {
+      alert(this.cssBlob);
+    },
     updateUserMinThresh(event) {
       this.userMinThresh = Number(event.target.value);
     },
@@ -162,6 +173,18 @@ export default {
       else {
           return 'dark';
       }
+    },
+  },
+  computed: {
+    cssBlob() {
+      const blob = `
+        :root {
+          --base: ${this.base};
+          --overlay: ${this.overlay};
+        }
+      `
+
+      return blob;
     },
   },
 }
@@ -250,7 +273,7 @@ a {
 
 button {
   background: #222;
-  color: var(--overlay, white);
+  color: white;
   border: none;
   padding: 10px 20px;
   text-transform: uppercase;
@@ -283,6 +306,7 @@ button:hover {
 .color-config section.color-actions {
   width: 100%;
   margin: 0 auto;
+  height: 40px;
 }
 
 .color-actions button {
