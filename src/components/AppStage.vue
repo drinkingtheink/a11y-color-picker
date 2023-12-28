@@ -47,7 +47,7 @@
     :lightOrDark="lightOrDark"
     @setOverlay="handleOverlayColorChange" 
   />
-  <section class="gallery">
+  <section class="gallery" v-show="!!base && !!overlay">
     <h2>Examples Gallery</h2>
 
     <div class="text text-1">
@@ -345,6 +345,10 @@ label, p {
 .color-generator,
 .gallery {
   background-color: var(--base, #FFF);
+}
+
+.color-generator {
+  padding-bottom: 1rem;
 }
 
 </style>
