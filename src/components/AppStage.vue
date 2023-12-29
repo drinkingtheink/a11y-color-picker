@@ -59,9 +59,48 @@
   >
     <h2>Examples Gallery</h2>
 
-    <div class="text text-1">
-      <h3>Checkout this Headline</h3>
-      <p>{{ blurb1 }}</p>
+    <div class="gallery-grid">
+
+      <div class="text text-1">
+        <h3>Checkout this Headline</h3>
+        <p>{{ blurb1 }}</p>
+      </div>
+
+      <div class="abstract">
+        <div class="pattern-banner pattern-banner-1" />
+        <div class="shapes">
+          <span class="triangle-up" />
+          <span class="triangle-right" />
+          <span class="triangle-down" />
+          <span class="triangle-left" />
+          <span class="triangle-up" />
+          <span class="triangle-right" />
+          <span class="triangle-down" />
+          <span class="triangle-left" />
+        </div>
+
+        <section class="pull-quote">
+          <blockquote>
+            <p>"Everything in moderation, including moderation."</p>
+            <footer><cite>- Oscar Wilde</cite></footer>
+          </blockquote>
+        </section>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="fake-form">
+        <label>How Are You?</label>
+        <input type="text">
+        
+        <p>Please select your favorite Web language:</p>
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label for="html">HTML</label><br>
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label for="css">CSS</label><br>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label for="javascript">JavaScript</label>
+      </div>
     </div>
   </section>
 </template>
@@ -226,6 +265,83 @@ export default {
   --borRad: 20px;
 }
 
+.abstract {
+  width: 45%;
+  padding: 0 !important;
+}
+
+.shapes {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 0.5rem 0 0.5rem 0 !important;
+  margin-top: 1rem;
+
+  --triSide: 20px;
+  --triBot: 35px;
+}
+
+.shapes .triangle-up {
+  width: 0;
+  height: 0;
+  border-left: var(--triSide) solid transparent;
+  border-right: var(--triSide) solid transparent;
+  border-bottom: var(--triBot) solid var(--overlay);
+}
+
+.shapes .triangle-down {
+  width: 0;
+  height: 0;
+  border-left: var(--triSide) solid transparent;
+  border-right: var(--triSide) solid transparent;
+  border-top: var(--triBot) solid var(--overlay);
+}
+
+.shapes .triangle-left {
+  width: 0;
+  height: 0;
+  border-top: var(--triSide) solid transparent;
+  border-right: var(--triBot) solid var(--overlay);
+  border-bottom: var(--triSide) solid transparent;
+}
+
+.shapes .triangle-right {
+  width: 0;
+  height: 0;
+  border-top: var(--triSide) solid transparent;
+  border-left: var(--triBot) solid var(--overlay);
+  border-bottom: var(--triSide) solid transparent;
+}
+
+.pull-quote {
+  font-size: 200%;
+}
+
+.pull-quote p {
+  margin-bottom: 0;
+}
+
+.fake-form {
+  width: 45%;
+  text-align: left;
+}
+
+.fake-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.fake-form input {
+  background-color: transparent;
+  border: 2px solid var(--overlay);
+  color: var(--overlay);
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 150%;
+}
+
 * {
   transition: all 0.3s;
 }
@@ -249,6 +365,10 @@ h1 {
   padding-bottom: 20rem;
 }
 
+.gallery p, .gallery span, .gallery div {
+  color: var(--overlay);
+}
+
 .dark.gallery h2 {
   color: white;
 }
@@ -257,23 +377,40 @@ h1 {
   font-size: 180%;
   border-bottom: 7px solid var(--overlay);
   padding-bottom: 0.5rem;
+  padding-top: 0;
 }
 
 .gallery div {
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
+}
+
+.gallery-grid {
+  display: flex;
 }
 
 .text-1 {
   background-color: var(--base);
   text-align: left;
-  width: 450px;
-  font-size: 120%;
+  width: 50%;
+  font-size: 160%;
 }
 
 .text-1 h3, .text-1 p {
   color: var(--overlay);
   padding-top: 0;
   margin-top: 1rem;
+}
+
+.pattern-banner-1 {
+  height: 2rem;
+  width: 100%;
+  background-color: transparent;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 100px,
+    var(--overlay) 200px
+  );
+  padding: 0 !important;
 }
 
 * {
@@ -435,4 +572,5 @@ label, p {
 .dark .options-header {
   color: white;
 }
+
 </style>
