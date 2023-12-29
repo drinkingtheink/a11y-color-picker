@@ -64,6 +64,10 @@
       <div class="text text-1">
         <h3>Checkout this Headline</h3>
         <p>{{ blurb1 }}</p>
+
+        <section class="graphs">
+          <Graphs />
+        </section>
       </div>
 
       <div class="abstract">
@@ -118,6 +122,7 @@
 
 <script>
 import ColorGen from './ColorGen.vue';
+import Graphs from './illu/Graphs.vue';
 
 export default {
   name: 'AppStage',
@@ -125,7 +130,8 @@ export default {
     msg: String
   },
   components: {
-    ColorGen
+    ColorGen,
+    Graphs,
   },
   data() {
     return {
@@ -437,7 +443,7 @@ h1 {
 }
 
 .gallery div {
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem;
 }
 
 .gallery-grid {
@@ -626,4 +632,7 @@ label, p {
   color: white;
 }
 
+.graphs * {
+  fill: var(--overlay);
+}
 </style>
