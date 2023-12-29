@@ -430,11 +430,8 @@ h1 {
   height: 2rem;
   width: 100%;
   background-color: transparent;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent 100px,
-    var(--overlay) 200px
-  );
+  background-image: linear-gradient(45deg, transparent 25%, var(--overlay) 25%, var(--overlay) 50%, transparent 50%, transparent 75%, var(--overlay) 75%, var(--overlay) 100%);
+  background-size: 56.57px 56.57px;
   padding: 0 !important;
 }
 
