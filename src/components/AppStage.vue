@@ -21,7 +21,14 @@
     <div class="color-config">
       <section class="color-select base-select">
         <p>{{ !!base ? `BASE COLOR` : `SELECT A BASE COLOR` }} <span class="value-display">{{ base }}</span></p>
-        <input v-show="!base" type="color" id="base-color-select" @input="handleBaseColorChange" />
+        <input 
+          v-show="!base" 
+          type="color" 
+          id="base-color-select" 
+          @input="handleBaseColorChange" 
+          :value="initialRando"
+        />
+
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <p v-show="!base">Or Pick One of These:</p>
 
@@ -299,6 +306,9 @@ export default {
 
       return blob;
     },
+    initialRando() {
+      return chroma.random().hex();
+    }
   },
 }
 </script>
@@ -406,9 +416,11 @@ export default {
 .pull-quote p {
   margin-bottom: 0;
   color: var(--base) !important;
+  text-align: left;
 }
 
 .pull-quote footer {
+  padding-top: 20px;
   font-style: italic;
 }
 
@@ -679,5 +691,10 @@ label, p {
   border-radius: 50%;
   margin-right: 5px;
   padding: 0;
+  border: 4px solid rgba(0,0,0, 0.3);
+}
+
+input[type="color"] {
+  width: 100%;
 }
 </style>
