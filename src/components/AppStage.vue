@@ -75,8 +75,8 @@
           <span class="triangle-left" />
           <span class="triangle-up" />
           <span class="triangle-right" />
-          <span class="triangle-down" />
-          <span class="triangle-left" />
+          <span class="circle" />
+          <span class="square" />
         </div>
 
         <section class="pull-quote">
@@ -313,8 +313,23 @@ export default {
   border-bottom: var(--triSide) solid transparent;
 }
 
+.shapes .circle {
+  width: var(--triBot);
+  height: var(--triBot);
+  background-color: var(--overlay);
+  border-radius: 50%;
+}
+
+.shapes .square {
+  width: var(--triBot);
+  height: var(--triBot);
+  background-color: var(--overlay);
+}
+
 .pull-quote {
   font-size: 200%;
+  border-top: 10px solid var(--overlay);
+  margin-top: 1rem;
 }
 
 .pull-quote p {
