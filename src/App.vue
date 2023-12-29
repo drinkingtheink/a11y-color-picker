@@ -1,5 +1,5 @@
 <template>
-  <AppStage msg="Welcome to Your Vue.js App"/>
+  <AppStage />
 </template>
 
 <script>

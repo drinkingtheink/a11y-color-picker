@@ -281,6 +281,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   margin-top: 2rem;
+  padding: 0 0 2rem 0 !important;
 }
 
 .gradient-1,
