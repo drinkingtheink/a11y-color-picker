@@ -20,9 +20,10 @@
 
     <div class="color-config">
       <section class="color-select base-select">
-        <p>{{ !!base ? `BASE COLOR` : `SELECT A COLOR` }} <span class="value-display">{{ base }}</span></p>
+        <p>{{ !!base ? `BASE COLOR` : `SELECT A BASE COLOR` }} <span class="value-display">{{ base }}</span></p>
         <input v-show="!base" type="color" id="base-color-select" @input="handleBaseColorChange" />
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+        <p v-show="!base">Or Pick One of These:</p>
       </section>
 
       <p>CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
@@ -34,6 +35,9 @@
         </div>
         <div v-if="!!base && !overlay" class="select-overlay-prompt">
           <p>Select a color from the generated options.</p>
+        </div>
+        <div v-if="!base && !overlay" class="select-overlay-prompt">
+          <p>Select a BASE color first.</p>
         </div>
       </section>
 
