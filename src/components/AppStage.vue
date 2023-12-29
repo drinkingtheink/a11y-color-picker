@@ -39,19 +39,24 @@
 
       <section class="color-actions">
         <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
-        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Base and Overlay</button>
+        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
       </section>
     </div>
   </main>
   <ColorGen 
     v-if="base" 
+    :class="lightOrDark(base)"
     :selectedColor="base" 
     :a11yThresh="a11yThresh" 
     :userMinThresh="userMinThresh"
     :lightOrDark="lightOrDark"
     @setOverlay="handleOverlayColorChange" 
   />
-  <section class="gallery" v-show="!!base && !!overlay">
+  <section 
+    class="gallery" 
+    v-show="!!base && !!overlay" 
+    :class="lightOrDark(base)"
+  >
     <h2>Examples Gallery</h2>
 
     <div class="text text-1">
@@ -244,6 +249,16 @@ h1 {
   padding-bottom: 20rem;
 }
 
+.dark.gallery h2 {
+  color: white;
+}
+
+.gallery h3 {
+  font-size: 180%;
+  border-bottom: 7px solid var(--overlay);
+  padding-bottom: 0.5rem;
+}
+
 .gallery div {
   padding: 2rem;
 }
@@ -413,7 +428,11 @@ label, p {
 }
 
 .color-generator {
-  padding-bottom: 1rem;
+  margin-top: -2rem;
+  padding-bottom: 4rem;
 }
 
+.dark .options-header {
+  color: white;
+}
 </style>

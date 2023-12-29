@@ -1,6 +1,6 @@
 <template>
   <div class="color-generator">
-    <h3>Your Generated Colors:</h3>
+    <h3 class="options-header">Generated Color Options:</h3>
 
 		<section class="color-output">
 			<Tile 
