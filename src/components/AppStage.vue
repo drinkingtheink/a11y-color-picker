@@ -25,12 +25,13 @@
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <p v-show="!base">Or Pick One of These:</p>
 
-        <div class="random-colors">
+        <div v-show="!base" class="random-colors">
           <button 
             class="random-color" 
             v-for="color in randomColors" 
             :key="color"
             :style="`background-color: ${color}`" 
+            @click="handleBaseColorChange({ 'target': { 'value': color}})"
           />
         </div>
       </section>
@@ -667,6 +668,7 @@ label, p {
 .random-colors {
   display: flex;
   justify-content: space-between;
+  padding-top: 10px;
 }
 
 .random-color {
