@@ -102,6 +102,12 @@
         <label for="javascript">JavaScript</label>
       </div>
     </div>
+
+    <div class="gallery-grid">
+      <div class="blurb-2">
+        <p>{{ blurb2 }}</p>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -336,6 +342,10 @@ export default {
   margin-bottom: 0;
 }
 
+.pull-quote footer {
+  font-style: italic;
+}
+
 .fake-form {
   width: 45%;
   text-align: left;
@@ -433,7 +443,7 @@ h1 {
 }
 
 main {
-  background-color: var(--base, white);
+  background-color: var(--base, transparent);
   padding-bottom: 2rem;
 }
 
@@ -576,7 +586,7 @@ label, p {
 #app,
 .color-generator,
 .gallery {
-  background-color: var(--base, #FFF);
+  background-color: var(--base, transparent);
 }
 
 .color-generator {
