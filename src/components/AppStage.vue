@@ -94,8 +94,8 @@
 
         <section class="pull-quote">
           <blockquote>
-            <p>"Everything in moderation, including moderation."</p>
-            <footer><cite>- Oscar Wilde</cite></footer>
+            <p>"Any sufficiently advanced technology is indistinguishable from magic."</p>
+            <footer><cite>- Arthur C. Clarke</cite></footer>
           </blockquote>
         </section>
       </div>
@@ -375,12 +375,15 @@ export default {
 
 .pull-quote {
   font-size: 200%;
-  border-top: 10px solid var(--overlay);
-  margin-top: 1rem;
+  background-color: var(--overlay);
+  color: var(--base);
+  padding: 1rem 0;
+  border-radius: 100px 100px 0 100px;
 }
 
 .pull-quote p {
   margin-bottom: 0;
+  color: var(--base) !important;
 }
 
 .pull-quote footer {
