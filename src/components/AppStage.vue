@@ -279,6 +279,7 @@ export default {
 .gradients {
   width: 100%;
   display: flex;
+  justify-content: space-evenly;
   margin-top: 2rem;
 }
 
