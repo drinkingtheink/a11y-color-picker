@@ -97,6 +97,7 @@ export default {
 	border: 2px solid;
 	margin: 5px 0 0 5px;
 	transition: all 0.2s;
+	text-transform: uppercase;
 }
 
 .color-tile.light {
