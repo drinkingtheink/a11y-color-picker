@@ -81,6 +81,8 @@ export default {
       userMinThresh: null,
       copyCssVerb: 'copy CSS',
       blurb1: '"While color contrast is often primarily an aesthetic choice, the use of color on a website pertains to using color to communicate information. WCAG guideline 1.4.1 on the use of color requires that "color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element."',
+      blurb2: '"Having good color contrast on your site benefits all your users, but it is particularly beneficial to users with certain types of color blindness and other similar conditions, who experience low contrast, and have trouble differentiating between similar colors. This is because they don\'t see bright and dark areas as readily as those without such conditions, and therefore have trouble seeing edges, borders, and other details."',
+      wipeOverlay: true,
     }
   },
   mounted() {
@@ -90,7 +92,11 @@ export default {
     base() {
       let root = document.documentElement;
       root.style.setProperty('--base', this.base);
-			this.overlay = null;   
+      
+      if (this.wipeOverlay) { 
+        this.overlay = null;
+        this.wipeOverlay = true;
+      }
     },
     overlay() {
       let root = document.documentElement;
@@ -112,12 +118,12 @@ export default {
       this.contrast = contrast;
     },
     swapBaseOverlay() {
-      console.log(`SWAPPING _++++++++++++++++`);
       const currOverlay = String(this.overlay);
       const currBase = String(this.base);
 
-      this.overlay = currBase;
+      this.wipeOverlay = false;
       this.base = currOverlay;
+      this.handleOverlayColorChange(currBase, this.contrast);
     },
     copyCssBlob() {
       navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
