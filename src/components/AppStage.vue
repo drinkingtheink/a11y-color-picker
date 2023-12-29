@@ -79,6 +79,11 @@
           <span class="square" />
         </div>
 
+        <div class="gradients">
+          <span class="gradient-1" />
+          <span class="gradient-2" />
+        </div>
+
         <section class="pull-quote">
           <blockquote>
             <p>"Everything in moderation, including moderation."</p>
@@ -271,6 +276,30 @@ export default {
   --borRad: 20px;
 }
 
+.gradients {
+  width: 100%;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.gradient-1,
+.gradient-2 {
+  display: inline-block;
+  width: 46%;
+  height: 200px;
+  border: 2px solid var(--overlay);
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.gradient-1 {
+  background-image: linear-gradient(to right top, var(--overlay), var(--base));
+}
+
+.gradient-2 {
+  background-image: linear-gradient(to left bottom, var(--overlay), var(--base));
+}
+
 .abstract {
   width: 45%;
   padding: 0 !important;
@@ -427,7 +456,7 @@ h1 {
 }
 
 .pattern-banner-1 {
-  height: 2rem;
+  height: 3rem;
   width: 100%;
   background-color: transparent;
   background-image: linear-gradient(45deg, transparent 25%, var(--overlay) 25%, var(--overlay) 50%, transparent 50%, transparent 75%, var(--overlay) 75%, var(--overlay) 100%);
