@@ -24,6 +24,15 @@
         <input v-show="!base" type="color" id="base-color-select" @input="handleBaseColorChange" />
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <p v-show="!base">Or Pick One of These:</p>
+
+        <div class="random-colors">
+          <button 
+            class="random-color" 
+            v-for="color in randomColors" 
+            :key="color"
+            :style="`background-color: ${color}`" 
+          />
+        </div>
       </section>
 
       <p>CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
@@ -653,5 +662,20 @@ label, p {
 
 .graphs * {
   fill: var(--overlay);
+}
+
+.random-colors {
+  display: flex;
+  justify-content: space-between;
+}
+
+.random-color {
+  --swatchDim: 30px;
+
+  height: var(--swatchDim);
+  width: var(--swatchDim);
+  border-radius: 50%;
+  margin-right: 5px;
+  padding: 0;
 }
 </style>
