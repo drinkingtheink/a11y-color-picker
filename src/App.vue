@@ -17,7 +17,7 @@ export default {
 html, body {
   padding: 0;
   margin: 0;
-  width: 100vw;
+  width: 102vw;
   overflow-x: hidden;
 }
 
@@ -32,7 +32,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 100vw;
+  width: 102vw;
   overflow-x: hidden;
 }
 </style>
