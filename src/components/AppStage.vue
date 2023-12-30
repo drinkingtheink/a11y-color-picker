@@ -20,7 +20,7 @@
 
     <div class="color-config">
       <section class="color-select base-select">
-        <p>{{ !!base ? `BASE COLOR` : `SELECT A BASE COLOR` }} <span class="value-display">{{ base }}</span></p>
+        <p>{{ !!base ? `BASE COLOR:` : `SELECT A BASE COLOR:` }} <span class="value-display">{{ base }}</span></p>
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <input 
           type="color" 
@@ -43,7 +43,7 @@
         </div>
       </section>
 
-      <p>CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
+      <p :class="[{ 'hide-me-vis': !base || !overlay }]">CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
 
       <section class="color-select overlay-select">
         <p>OVERLAY: <span class="value-display">{{ overlay }}</span></p>
@@ -783,5 +783,9 @@ button.mini:hover {
   visibility: hidden;
   padding: 0;
   margin: 0;
+}
+
+.hide-me-vis {
+  visibility: hidden;
 }
 </style>
