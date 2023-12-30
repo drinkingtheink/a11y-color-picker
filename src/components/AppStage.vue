@@ -315,19 +315,19 @@ export default {
   computed: {
     cssBlob() {
       const blob = `
-        :root {
-          --base: ${this.base};
-          --overlay: ${this.overlay};
-        }
+:root {
+  --base: ${this.base};
+  --overlay: ${this.overlay};
+}
 
-        h1, h2, h3, h4, h5, p, span, div {
-          color: var(--overlay);
-        }
+h1, h2, h3, h4, h5, p, span, div {
+  color: var(--overlay);
+}
 
-        .base {
-          background-color: var(--base);
-        }
-      `
+.base {
+  background-color: var(--base);
+}
+`
 
       return blob;
     },
