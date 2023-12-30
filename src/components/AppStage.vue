@@ -654,6 +654,13 @@ label, p {
 
 .min-contrast-display {
   font-weight: bold;
+  background: #666666;
+  background: linear-gradient(180deg, #666666, #222222);
+  margin: 0 auto;
+  width: 300px;
+  padding: 5px;
+  color: white;
+  border-radius: 10px 10px 0 0;
 }
 
 .dark .min-contrast-display {
