@@ -26,7 +26,7 @@
           type="color" 
           id="base-color-select" 
           @input="handleBaseColorChange" 
-          :value="initialRando"
+          :value="currentRandom"
         />
 
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
@@ -40,6 +40,7 @@
             :style="`background-color: ${color}`" 
             @click="handleBaseColorChange({ 'target': { 'value': color}})"
           />
+          <button class="more-randos mini" @click="makeRandomColorList()">More</button>
         </div>
       </section>
 
@@ -167,12 +168,15 @@ export default {
       blurb2: '"Having good color contrast on your site benefits all your users, but it is particularly beneficial to users with certain types of color blindness and other similar conditions, who experience low contrast, and have trouble differentiating between similar colors. This is because they don\'t see bright and dark areas as readily as those without such conditions, and therefore have trouble seeing edges, borders, and other details."',
       wipeOverlay: true,
       randomColors: [],
+      currentRandom: null,
     }
   },
   mounted() {
     this.userMinThresh = this.a11yThresh;
 
     this.makeRandomColorList();
+
+    this.getRando();
   },
   watch: {
     base() {
@@ -197,6 +201,8 @@ export default {
   },
   methods: {
     makeRandomColorList() {
+      this.randomColors = [];
+
       for (let step = 0; step < 5; step++) {
         const newColor = chroma.random().hex();
         this.randomColors.push(newColor);
@@ -286,6 +292,9 @@ export default {
           return 'dark';
       }
     },
+    getRando() {
+      this.currentRandom = chroma.random().hex();
+    },
   },
   computed: {
     cssBlob() {
@@ -306,9 +315,6 @@ export default {
 
       return blob;
     },
-    initialRando() {
-      return chroma.random().hex();
-    }
   },
 }
 </script>
@@ -681,6 +687,7 @@ label, p {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
+  position: relative;
 }
 
 .random-color {
@@ -696,5 +703,22 @@ label, p {
 
 input[type="color"] {
   width: 100%;
+}
+
+.more-randos {
+  transform: scale(0.5);
+  width: 100%;
+  position: absolute;
+  bottom: -40px;
+}
+
+button.mini {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  transition: all 0.2s;
+}
+
+button.mini:hover {
+  background-color: rgba(0,0,0,1);
 }
 </style>
