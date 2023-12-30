@@ -21,15 +21,14 @@
     <div class="color-config">
       <section class="color-select base-select">
         <p>{{ !!base ? `BASE COLOR` : `SELECT A BASE COLOR` }} <span class="value-display">{{ base }}</span></p>
+        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <input 
-          v-show="!base" 
           type="color" 
           id="base-color-select" 
           @input="handleBaseColorChange" 
-          :value="currentRandom"
+          :value="base || currentRandom"
+          :class="[{ 'hide-me': !!base }]"
         />
-
-        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
         <p v-show="!base">Or Pick One of These:</p>
 
         <div v-show="!base" class="random-colors">
@@ -74,11 +73,13 @@
     :lightOrDark="lightOrDark"
     @setOverlay="handleOverlayColorChange" 
   />
+  <div class="halftone background" />
   <section 
     class="gallery" 
     v-show="!!base && !!overlay" 
     :class="lightOrDark(base)"
   >
+
     <h2>Examples Gallery</h2>
 
     <div class="gallery-grid">
@@ -169,14 +170,20 @@ export default {
       wipeOverlay: true,
       randomColors: [],
       currentRandom: null,
+      colorPickerInst: null,
     }
   },
   mounted() {
     this.userMinThresh = this.a11yThresh;
 
+    window.addEventListener('load', this.findColorPicker, false);
+
     this.makeRandomColorList();
 
     this.getRando();
+  },
+  unmounted() {
+    window.removeEventListener('load', this.findColorPicker, false);
   },
   watch: {
     base() {
@@ -200,6 +207,15 @@ export default {
 		},
   },
   methods: {
+    findColorPicker() {
+      let colorPicker;
+
+      colorPicker = this.colorPickerInst = document.querySelector('#base-color-select');
+      colorPicker.value = chroma.random().hex();
+      // colorPicker.addEventListener('input', updateFirst, false);
+      // colorPicker.addEventListener('change', updateAll, false);
+      colorPicker.select();
+    },
     makeRandomColorList() {
       this.randomColors = [];
 
@@ -471,11 +487,18 @@ h1 {
 .gallery {
   width: 80%;
   margin: 0 auto;
+  padding-top: 2rem;
   padding-bottom: 20rem;
+  position: relative;
+  z-index: 1;
 }
 
 .gallery p, .gallery span, .gallery div {
   color: var(--overlay);
+}
+
+.gallery h2 {
+  padding-bottom: 2rem;
 }
 
 .dark.gallery h2 {
@@ -679,7 +702,7 @@ label, p {
 
 .color-generator {
   margin-top: -2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 1rem;
 }
 
 .dark .options-header {
@@ -693,7 +716,7 @@ label, p {
 .random-colors {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  padding-top: 5px;
   position: relative;
 }
 
@@ -716,7 +739,7 @@ input[type="color"] {
   transform: scale(0.5);
   width: 100%;
   position: absolute;
-  bottom: -40px;
+  bottom: -50px;
 }
 
 button.mini {
@@ -727,5 +750,38 @@ button.mini {
 
 button.mini:hover {
   background-color: rgba(0,0,0,1);
+}
+
+.halftone {
+  min-height: 2rem;
+  background-image: radial-gradient(
+      circle at center,
+      var(--overlay) 0.25rem,
+      transparent 0
+    ), radial-gradient(circle at center, var(--overlay) 0.25rem, transparent 0);
+  background-size: 1.3rem 1.3rem;
+  background-position: 0 0, 0.65rem 0.65rem;
+}
+
+.halftone.background {
+  position: absolute;
+  top: 45rem;
+  left: -10%;
+  width: 130%;
+  height: 80rem;
+  transform: rotate(-5deg);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  padding: 2rem 0;
+  border-top: 10px solid var(--overlay);
+  border-bottom: 10px solid var(--overlay);
+}
+
+.hide-me {
+  height: 0;
+  visibility: hidden;
+  padding: 0;
+  margin: 0;
 }
 </style>
