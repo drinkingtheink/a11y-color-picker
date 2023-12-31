@@ -22,6 +22,7 @@
       <section class="color-select base-select">
         <p>{{ !!base ? `BASE COLOR:` : `SELECT A BASE COLOR:` }} <span class="value-display">{{ base }}</span></p>
         <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+        <code v-show="!!base" class="code">{{ baseCss }}</code>
         <input 
           type="color" 
           id="base-color-select" 
@@ -50,6 +51,7 @@
         <div v-if="overlay" class="swatch" :style="`background-color: ${overlay}`">
           <button class="smol" @click="overlay = null">X</button>
         </div>
+        <code v-show="!!overlay" class="code">{{ overlayCss }}</code>
         <div v-if="!!base && !overlay" class="select-overlay-prompt">
           <p>Select a color from the generated options.</p>
         </div>
@@ -212,8 +214,6 @@ export default {
 
       colorPicker = this.colorPickerInst = document.querySelector('#base-color-select');
       colorPicker.value = chroma.random().hex();
-      // colorPicker.addEventListener('input', updateFirst, false);
-      // colorPicker.addEventListener('change', updateAll, false);
       colorPicker.select();
     },
     makeRandomColorList() {
@@ -330,6 +330,12 @@ h1, h2, h3, h4, h5, p, span, div {
 `
 
       return blob;
+    },
+    baseCss() {
+      return `--base: ${String(this.base).toUpperCase()}` || null;
+    },
+    overlayCss() {
+      return `--overlay: ${String(this.overlay).toUpperCase()}` || null;
     },
   },
 }
