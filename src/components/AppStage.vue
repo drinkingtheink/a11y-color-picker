@@ -66,6 +66,7 @@
       </section>
     </div>
   </main>
+  
   <ColorGen 
     v-if="base" 
     :class="lightOrDark(base)"
@@ -75,7 +76,9 @@
     :lightOrDark="lightOrDark"
     @setOverlay="handleOverlayColorChange" 
   />
+  
   <div class="halftone background" />
+  
   <section 
     class="gallery" 
     v-show="!!base && !!overlay" 
@@ -143,6 +146,24 @@
       </div>
     </div>
   </section>
+
+  <nav class="sticky">
+    <p>BASE:</p>
+    
+    <section class="base">
+      <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+    </section>
+    
+    <p>OVERLAY:</p>
+    
+    <section class="overlay">
+      <p v-show="!!overlay" class="swatch" :style="`background-color: ${overlay}`" />
+    </section>
+    
+    <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
+    
+    <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+  </nav>
 </template>
 
 <script>
@@ -342,8 +363,41 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+
+nav {
+  background: linear-gradient(to bottom, var(--panelBg) 56%,#919191 100%);
+  padding: 10px 2rem 0 2rem;
+  text-align: center;
+  width: 60%;
+  position: fixed;
+  z-index: 2;
+  height: 80px;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translate(-50%, 50%);
+}
+
+nav * {
+  margin-right: 10px;
+}
+
+nav p {
+  padding: 0;
+  margin: 0 10px 0 0;
+}
+
+nav button {
+  transform: scale(0.6);
+}
+
 :root {
   --borRad: 20px;
+  --panelBg: #eaeaea;
 }
 
 .gradients {
@@ -606,7 +660,7 @@ button:hover {
   justify-content: space-between;
   width: 650px;
   margin: 0 auto;
-  background: #eaeaea;
+  background: var(--panelBg);
   padding: 0 2rem 1rem 2rem;
   border-radius: var(--borRad);
   box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
@@ -639,6 +693,16 @@ label, p {
   border: 5px solid rgba(0,0,0, 0.3);
   border-radius: 50%;
   position: relative;
+  transition: all 1s;
+}
+
+nav .swatch {
+  --swatchDim: 30px;
+
+  height: var(--swatchDim);
+  width: var(--swatchDim);
+  border: 5px solid rgba(0,0,0, 0.3);
+  border-radius: 50%;
   transition: all 1s;
 }
 
