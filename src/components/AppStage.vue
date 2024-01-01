@@ -489,7 +489,7 @@ nav button {
 }
 
 .palette .swatch {
-  border: 1px solid rgba(0,0,0,0.5);
+  border: 2px solid var(--overlay);
   margin-right: 2px;
   padding: 0;
   height: 5rem;
