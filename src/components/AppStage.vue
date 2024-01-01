@@ -63,6 +63,7 @@
       <section class="color-actions">
         <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
         <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+        <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
       </section>
     </div>
   </main>
@@ -147,7 +148,7 @@
     </div>
   </section>
 
-  <nav class="sticky">
+  <nav v-show="!!base && !!overlay" class="sticky">
     <p>BASE:</p>
     
     <section class="base">
@@ -163,6 +164,8 @@
     <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
     
     <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+
+    <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
   </nav>
 </template>
 
@@ -230,6 +233,10 @@ export default {
 		},
   },
   methods: {
+    clearColors() {
+      this.overlay = null;
+      this.base = null;
+    },
     findColorPicker() {
       let colorPicker;
 
@@ -365,10 +372,10 @@ h1, h2, h3, h4, h5, p, span, div {
 <style>
 
 nav {
-  background: linear-gradient(to bottom, var(--panelBg) 56%,#919191 100%);
+  background: linear-gradient(to bottom, var(--panelBg) 16%,#919191 100%);
   padding: 10px 2rem 0 2rem;
   text-align: center;
-  width: 60%;
+  width: 50%;
   position: fixed;
   z-index: 2;
   height: 80px;
@@ -393,6 +400,7 @@ nav p {
 
 nav button {
   transform: scale(0.6);
+  width: 100%;
 }
 
 :root {
