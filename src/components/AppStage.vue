@@ -956,6 +956,23 @@ button.mini:hover {
 }
 
 /** lines bg */
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.lines-bg {
+  opacity: 0.6;
+}
+
+.lines-bg path {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: dash 10s linear alternate infinite;
+}
+
 .cls-1{
     stroke: var(--overlay)
 }
