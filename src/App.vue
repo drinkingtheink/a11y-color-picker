@@ -19,6 +19,7 @@ html, body {
   margin: 0;
   width: 102vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 html {

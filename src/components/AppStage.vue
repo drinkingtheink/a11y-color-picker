@@ -290,6 +290,8 @@ export default {
       const swatch = document.getElementById('base-color-select') || false;
 
       if (swatch) swatch.click();
+
+      window.scrollTo(0,0);
     },
     lightOrDark(color) {
       if (!color) {
@@ -712,6 +714,10 @@ nav .swatch {
   border: 5px solid rgba(0,0,0, 0.3);
   border-radius: 50%;
   transition: all 1s;
+}
+
+nav .swatch:hover {
+  cursor: zoom-in;
 }
 
 .swatch button {
