@@ -117,6 +117,15 @@
           <span class="gradient-2" />
         </div>
 
+        <div class="palette">
+          <div class="swatch" 
+              v-for="color in baseToOverlayPalette" 
+              :key="color" 
+              :style="`background-color: ${color}`"
+            />
+        </div>
+        
+
         <section class="pull-quote">
           <blockquote>
             <p>"Any sufficiently advanced technology is indistinguishable from magic."</p>
@@ -148,7 +157,7 @@
     </div>
   </section>
 
-  <nav v-show="!!base && !!overlay" class="sticky">
+  <nav v-show="showBottomNav" class="sticky">
     <p>BASE:</p>
     
     <section class="base">
@@ -197,7 +206,12 @@ export default {
       randomColors: [],
       currentRandom: null,
       colorPickerInst: null,
+      showBottomNav: false,
+      baseToOverlayPalette: [],
     }
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
   },
   mounted() {
     this.userMinThresh = this.a11yThresh;
@@ -207,9 +221,13 @@ export default {
     this.makeRandomColorList();
 
     this.getRando();
+
+    this.makeBaseToOverlayPalette(this.base, this.overlay);
+
   },
   unmounted() {
     window.removeEventListener('load', this.findColorPicker, false);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   watch: {
     base() {
@@ -220,10 +238,18 @@ export default {
         this.overlay = null;
         this.wipeOverlay = true;
       }
+
+      if (!!this.base && !!this.overlay) {
+        this.makeBaseToOverlayPalette(this.base, this.overlay);
+      }
     },
     overlay() {
       let root = document.documentElement;
       root.style.setProperty('--overlay', this.overlay);
+
+      if (!!this.base && !!this.overlay) {
+        this.makeBaseToOverlayPalette(this.base, this.overlay);
+      }
     },
     userMinThresh() {
 			this.overlay = null;
@@ -233,6 +259,26 @@ export default {
 		},
   },
   methods: {
+    makeBaseToOverlayPalette(base, overlay) {
+      
+      if (base && overlay) {
+        const baseColor = chroma(String(base));
+        const overlayColor = chroma(String(overlay)); 
+
+        for (var i = 0; i < 6; i++) {
+            this.baseToOverlayPalette[i] = chroma.mix(baseColor, overlayColor, i * 0.25).hex()
+        }
+      }
+    },
+    handleScroll() {
+      const distFromTop = 600;
+
+      if (window.scrollY > distFromTop) {
+        this.showBottomNav = true;
+      } else if (window.scrollY <= distFromTop) {
+        this.showBottomNav = false;
+      }
+    },
     clearColors() {
       this.overlay = null;
       this.base = null;
@@ -434,6 +480,20 @@ nav button {
 
 .gradient-2 {
   background-image: linear-gradient(to left bottom, var(--overlay), var(--base));
+}
+
+.palette {
+  display: flex;
+  height: 6rem;
+  padding: 0 0 2rem 0 !important;
+}
+
+.palette .swatch {
+  border: 1px solid rgba(0,0,0,0.5);
+  margin-right: 2px;
+  padding: 0;
+  height: 5rem;
+  width: 5rem;
 }
 
 .abstract {
