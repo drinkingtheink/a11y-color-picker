@@ -1,5 +1,6 @@
 <template>
   <main :class="[lightOrDark(base)]">
+    <Lines v-show="!!base && !!overlay" class="lines-bg" />
     <div class="top-border" />
     <h1>A11y Color Combinator</h1>
 
@@ -160,7 +161,7 @@
     </div>
   </section>
 
-  <nav v-show="showBottomNav" class="sticky">
+  <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
     <p>BASE:</p>
     
     <section class="base">
@@ -185,6 +186,7 @@
 import chroma from "chroma-js";
 import ColorGen from './ColorGen.vue';
 import Graphs from './illu/Graphs.vue';
+import Lines from './illu/Lines.vue';
 
 export default {
   name: 'AppStage',
@@ -194,6 +196,7 @@ export default {
   components: {
     ColorGen,
     Graphs,
+    Lines,
   },
   data() {
     return {
@@ -268,7 +271,7 @@ export default {
         const baseColor = chroma(String(base));
         const overlayColor = chroma(String(overlay)); 
 
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 5; i++) {
             this.baseToOverlayPalette[i] = chroma.mix(baseColor, overlayColor, i * 0.25).hex()
         }
       }
@@ -422,6 +425,16 @@ h1, h2, h3, h4, h5, p, span, div {
 
 <style>
 
+.lines-bg {
+  position: absolute;
+  width: 120%;
+  height: 39rem;
+  top: 5px;
+  left: -20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
 nav {
   background: linear-gradient(to bottom, var(--panelBg) 16%,#919191 100%);
   padding: 10px 2rem 0 2rem;
@@ -496,7 +509,7 @@ nav button {
   margin-right: 2px;
   padding: 0;
   height: 5rem;
-  width: 5rem;
+  width: 19%;
 }
 
 .abstract {
@@ -741,6 +754,8 @@ button:hover {
   padding: 0 2rem 1rem 2rem;
   border-radius: var(--borRad);
   box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 1;
 }
 
 .color-config section {
@@ -939,4 +954,76 @@ button.mini:hover {
 .hide-me-vis {
   visibility: hidden;
 }
+
+/** lines bg */
+.cls-1{
+    stroke: var(--overlay)
+}
+.cls-1,.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9,.cls-10,.cls-11,.cls-12,.cls-13,.cls-14,.cls-15,.cls-16,.cls-17,.cls-18,.cls-19,.cls-20,.cls-21,.cls-22{
+    fill:none;
+    stroke-miterlimit:10;
+}
+.cls-2{
+    stroke: var(--overlay)
+}
+.cls-3{
+    stroke: var(--overlay)
+}
+.cls-4{
+    stroke: var(--overlay)
+}
+.cls-5{
+    stroke: var(--overlay)
+}
+.cls-6{
+    stroke: var(--overlay)
+}
+.cls-7{
+    stroke: var(--overlay)
+}
+.cls-8{
+    stroke: var(--overlay)
+}
+.cls-9{
+    stroke: var(--overlay)
+}
+.cls-10{
+    stroke:#fff;
+}
+.cls-11{
+    stroke: var(--overlay)
+}
+.cls-12{
+    stroke: var(--overlay)
+}
+.cls-13{
+    stroke: var(--overlay)
+}
+.cls-14{
+    stroke: var(--overlay)
+}
+.cls-15{
+    stroke: var(--overlay)
+}
+.cls-16{
+    stroke: var(--overlay)
+}
+.cls-17{
+    stroke: var(--overlay)
+}
+.cls-18{
+    stroke: var(--overlay)
+}
+.cls-19{
+    stroke: var(--overlay)
+}
+.cls-20{
+    stroke: var(--overlay)
+}
+.cls-21{
+    stroke: var(--overlay)
+}
+.cls-22{
+    stroke: var(--overlay)
+} 
 </style>
