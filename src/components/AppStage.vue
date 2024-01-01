@@ -139,6 +139,9 @@
       <div class="fake-form">
         <label>How Are You?</label>
         <input type="text">
+
+        <label>Another Text Input Example</label>
+        <input type="text">
         
         <p>Please select your favorite Web language:</p>
         <input type="radio" id="html" name="fav_language" value="HTML">
@@ -485,7 +488,7 @@ nav button {
 .palette {
   display: flex;
   height: 6rem;
-  padding: 0 0 2rem 0 !important;
+  padding: 0 0 2rem 1rem !important;
 }
 
 .palette .swatch {
@@ -644,6 +647,10 @@ h1 {
 
 .gallery div {
   padding: 0 2rem;
+}
+
+.gallery input {
+  margin-bottom: 1rem;
 }
 
 .gallery-grid {
