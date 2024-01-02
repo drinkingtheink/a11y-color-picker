@@ -223,13 +223,11 @@ export default {
       baseToOverlayPalette: [],
     }
   },
-  created() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
   mounted() {
     this.userMinThresh = this.a11yThresh;
 
     window.addEventListener('load', this.findColorPicker, false);
+    window.addEventListener('scroll', this.handleScroll);
 
     this.makeRandomColorList();
 
@@ -451,6 +449,7 @@ h1, h2, h3, h4, h5, p, span, div {
 .lines-bg {
   position: absolute;
   width: 120%;
+  transform: rotate(5deg);
   height: 39rem;
   top: 5px;
   left: -20px;
@@ -991,10 +990,9 @@ button.mini:hover {
 }
 
 .lines-bg path {
-  stroke-dasharray: 1500;
-  stroke-dashoffset: 1500;
-  animation: dash 10s linear alternate infinite;
-  animation-delay: 5s;
+  stroke-dasharray: 75;
+  stroke-dashoffset: 1100;
+  animation: dash 50s linear alternate infinite;
 }
 
 .womp-womp {
