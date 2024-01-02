@@ -1,6 +1,6 @@
 <template>
   <main :class="[lightOrDark(base)]">
-    <Lines v-show="!!base && !!overlay" class="lines-bg" />
+    <Lines v-show="everythingIsInPlace" class="lines-bg" />
     <div class="top-border" />
     <h1>A11y Color Combinator</h1>
 
@@ -70,7 +70,7 @@
   </main>
   
   <ColorGen 
-    v-if="base" 
+    v-if="!!base" 
     :class="lightOrDark(base)"
     :selectedColor="base" 
     :a11yThresh="a11yThresh" 
@@ -83,7 +83,7 @@
   
   <section 
     class="gallery" 
-    v-show="!!base && !!overlay" 
+    v-show="everythingIsInPlace" 
     :class="lightOrDark(base)"
   >
 
@@ -425,6 +425,12 @@ h1, h2, h3, h4, h5, p, span, div {
     },
     overlayCss() {
       return `--overlay: ${String(this.overlay).toUpperCase()}` || null;
+    },
+    contrastAtMinOrBetter() {
+      return !!this.contrast && this.contrast > this.a11yThresh; 
+    },
+    everythingIsInPlace() {
+      return !!this.overlay && !!this.base && this.contrastAtMinOrBetter;
     },
   },
 }
@@ -988,6 +994,7 @@ button.mini:hover {
   stroke-dasharray: 1500;
   stroke-dashoffset: 1500;
   animation: dash 10s linear alternate infinite;
+  animation-delay: 5s;
 }
 
 .womp-womp {

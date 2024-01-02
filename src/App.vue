@@ -14,6 +14,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;700&family=Russo+One&display=swap');
+
 html, body {
   padding: 0;
   margin: 0;
@@ -35,5 +37,9 @@ html {
   color: #2c3e50;
   width: 102vw;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, .boldtype {
+  font-family: 'Russo One', sans-serif;
 }
 </style>
