@@ -427,7 +427,7 @@ h1, h2, h3, h4, h5, p, span, div {
       return `--overlay: ${String(this.overlay).toUpperCase()}` || null;
     },
     contrastAtMinOrBetter() {
-      return !!this.contrast && this.contrast > this.a11yThresh; 
+      return !!this.contrast && this.contrast >= this.a11yThresh; 
     },
     everythingIsInPlace() {
       return !!this.overlay && !!this.base && this.contrastAtMinOrBetter;
