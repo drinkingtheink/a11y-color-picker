@@ -3,6 +3,10 @@
     <h3 class="options-header">Generated Overlay Color Options:</h3>
 
 		<section class="color-output">
+			<div class="annotation">
+				<span class="hex">Hex Value <i class="arrow right"></i></span>
+				<span class="cont">Contrast <i class="arrow right"></i></span>
+			</div>
 			<Tile 
 				v-for="color in countArr" 
 				:key="color" 
@@ -79,7 +83,52 @@ export default {
 .color-output {
 	display: flex;
 	justify-content: center;
-	max-width: 80vw;
+	max-width: 730px;
 	margin: 0 auto 1rem auto;
+	position: relative;
+}
+
+.color-output .annotation {
+	position: absolute;
+	width: 100px;
+	text-align: right;
+	left: -3rem;
+	top: 0;
+	height: 100px;
+}
+
+.color-output .hex,
+.color-output .cont {
+	position: absolute;
+	right: 0;
+	width: 100%;
+	color: #111;
+	display: block;
+	padding: 5px 10px;
+	background-color: #eaeaea;
+	transform: scale(0.8);
+	border-radius: 10px 0 0 10px;
+    margin-right: -2px;
+	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+.color-output .hex {
+	top: 22px;
+}
+
+.color-output .cont {
+	bottom: 0;
+}
+ 
+.arrow {
+  border: solid #111;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 </style>

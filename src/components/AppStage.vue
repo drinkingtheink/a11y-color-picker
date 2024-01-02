@@ -486,7 +486,7 @@ nav p {
 
 nav button {
   transform: scale(0.6);
-  width: 100%;
+  margin-top: -10px;
 }
 
 :root {
@@ -792,6 +792,7 @@ button:hover {
 
 .color-actions button {
   transform: scale(0.8);
+  width: 33%;
 }
 
 label, p {
