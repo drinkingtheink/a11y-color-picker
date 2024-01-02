@@ -722,7 +722,8 @@ h1 {
 }
 
 main {
-  background-color: var(--base, transparent);
+  /* background-color: var(--base, transparent); */
+  background: linear-gradient(to bottom, var(--base, transparent) 40%,var(--overlay, transparent) 75%,var(--base, transparent) 100%);
   padding-bottom: 2rem;
 }
 
@@ -994,9 +995,9 @@ button.mini:hover {
 }
 
 .lines-bg path {
-  stroke-dasharray: 75;
-  stroke-dashoffset: 1100;
-  animation: dash 50s linear alternate infinite;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: dash 20s linear alternate infinite;
 }
 
 .womp-womp {
