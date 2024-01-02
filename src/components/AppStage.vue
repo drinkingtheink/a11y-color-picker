@@ -180,11 +180,13 @@
         />
       </section>
       
-      <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
-      
-      <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+      <div>
+        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
+        
+        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
 
-      <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+        <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+      </div>
     </nav>
   </Transition>
 </template>
@@ -469,7 +471,6 @@ nav {
   border: 1px solid #222;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   left: 50%;
   bottom: 1.5rem;
   transform: translate(-50%, 50%);
@@ -485,8 +486,10 @@ nav p {
 }
 
 nav button {
-  transform: scale(0.6);
+  transform: scale(0.8);
   margin-top: -10px;
+  font-size: 90%;
+  margin: 0;
 }
 
 :root {
