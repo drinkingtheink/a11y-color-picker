@@ -892,8 +892,8 @@ nav .swatch:hover {
   color: white;
 }
 
-.graphs * {
-  fill: var(--overlay);
+.graphs path {
+  fill: var(--overlay, red);
 }
 
 .random-colors {
