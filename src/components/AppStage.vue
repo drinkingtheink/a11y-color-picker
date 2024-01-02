@@ -161,25 +161,32 @@
     </div>
   </section>
 
-  <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
-    <p>BASE:</p>
-    
-    <section class="base">
-      <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
-    </section>
-    
-    <p>OVERLAY:</p>
-    
-    <section class="overlay">
-      <p v-show="!!overlay" class="swatch" :style="`background-color: ${overlay}`" />
-    </section>
-    
-    <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
-    
-    <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+  <Transition>
+    <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
+      <p>BASE:</p>
+      
+      <section class="base">
+        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+      </section>
+      
+      <p>OVERLAY:</p>
+      
+      <section class="overlay">
+        <p 
+          v-show="!!overlay" 
+          class="swatch" 
+          :style="`background-color: ${overlay}`" 
+          @click="window.scrollTo(0,0);" 
+        />
+      </section>
+      
+      <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
+      
+      <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
 
-    <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
-  </nav>
+      <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+    </nav>
+  </Transition>
 </template>
 
 <script>
@@ -424,6 +431,16 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+
+.v-enter-active,
+.v-leave-active {
+  margin-bottom: 0;
+}
+
+.v-enter-from,
+.v-leave-to {
+  margin-bottom: -200px;
+}
 
 .lines-bg {
   position: absolute;
