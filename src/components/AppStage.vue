@@ -79,7 +79,7 @@
     @setOverlay="handleOverlayColorChange" 
   />
   
-  <div class="halftone background" />
+  <div class="halftone background" v-show="everythingIsInPlace" />
   
   <section 
     class="gallery" 
