@@ -45,7 +45,7 @@
         </div>
       </section>
 
-      <p :class="[{ 'hide-me-vis': !base || !overlay }]">CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
+      <p :class="[{ 'hide-me-vis': !base || !overlay }, { 'womp-womp' : contrast < a11yThresh}]">CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
 
       <section class="color-select overlay-select">
         <p>OVERLAY: <span class="value-display">{{ overlay }}</span></p>
@@ -988,6 +988,10 @@ button.mini:hover {
   stroke-dasharray: 1500;
   stroke-dashoffset: 1500;
   animation: dash 10s linear alternate infinite;
+}
+
+.womp-womp {
+  color: red !important;
 }
 
 .cls-1{
