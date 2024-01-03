@@ -722,8 +722,8 @@ h1 {
 }
 
 main {
-  /* background-color: var(--base, transparent); */
-  background: linear-gradient(to bottom, var(--base, transparent) 55%,var(--overlay, transparent) 65%,var(--base, transparent)80%);
+  background-color: var(--base, transparent);
+  /* background: linear-gradient(to bottom, var(--base, transparent) 55%,var(--overlay, transparent) 65%,var(--base, transparent)80%); */
   padding-bottom: 2rem;
 }
 
@@ -992,6 +992,7 @@ button.mini:hover {
 
 .lines-bg {
   opacity: 0.6;
+  display: none;
 }
 
 .lines-bg path {
