@@ -471,7 +471,7 @@ h1, h2, h3, h4, h5, p, span, div {
   background-color: var(--overlay, rgba(0,0,0,0.7));
   padding: 1rem 1rem 0.5rem 1rem;
   border-radius: 10px;
-  transform: scale(0.9);
+  transform: scale(0.85);
 }
 
 .info-display a {
@@ -758,7 +758,7 @@ nav button {
 
 .top-border {
   height: 10px;
-  background-color: var(--overlay, --base, transparent);
+  background-color: var(--overlay, rgba(0,0,0,0.7));
 }
 
 h1 {
