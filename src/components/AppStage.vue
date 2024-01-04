@@ -1,5 +1,6 @@
 <template>
   <main :class="[lightOrDark(base)]">
+    <Info class="info-display" />
     <Lines v-show="everythingIsInPlace" class="lines-bg" />
     <div class="top-border" />
     <h1>A11y Color Combinator</h1>
@@ -92,7 +93,7 @@
     <div class="gallery-grid">
 
       <div class="text text-1">
-        <h3>Checkout this Headline</h3>
+        <h3>Sphinx of black quartz, judge my vow</h3>
         <p>{{ blurb1 }}</p>
 
         <section class="graphs">
@@ -144,7 +145,7 @@
         <label>Another Text Input Example</label>
         <input type="text">
         
-        <p>Please select your favorite Web language:</p>
+        <label>Please select your favorite Web language:</label>
         <section class="select-inputs">
           <div 
             class="select-option"
@@ -204,6 +205,7 @@
 <script>
 import chroma from "chroma-js";
 import ColorGen from './ColorGen.vue';
+import Info from './Info.vue';
 import Graphs from './illu/Graphs.vue';
 import Lines from './illu/Lines.vue';
 
@@ -216,6 +218,7 @@ export default {
     ColorGen,
     Graphs,
     Lines,
+    Info,
   },
   data() {
     return {
@@ -246,7 +249,7 @@ export default {
           name: 'JavaScript',
           selected: false,
         },
-      ]
+      ],
     }
   },
   mounted() {
@@ -461,6 +464,11 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+.info-display {
+  position: absolute;
+  top: 2rem;
+  right: 20%;
+}
 
 .v-enter-active,
 .v-leave-active {
