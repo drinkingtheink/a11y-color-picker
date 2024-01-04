@@ -145,12 +145,22 @@
         <input type="text">
         
         <p>Please select your favorite Web language:</p>
-        <input type="radio" id="html" name="fav_language" value="HTML">
-        <label for="html">HTML</label><br>
-        <input type="radio" id="css" name="fav_language" value="CSS">
-        <label for="css">CSS</label><br>
-        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-        <label for="javascript">JavaScript</label>
+        <section class="select-inputs">
+          <div 
+            class="select-option"
+            v-for="lang in langs" 
+            :key="lang.name"
+            @click="lang.selected = !lang.selected"
+          >
+            <p>{{ lang.name }}</p>
+
+            <div 
+              class="selected-circ" 
+              :class="{ 'active': lang.selected }" 
+              
+            />
+          </div>
+        </section>
       </div>
     </div>
 
@@ -223,6 +233,20 @@ export default {
       colorPickerInst: null,
       showBottomNav: false,
       baseToOverlayPalette: [],
+      langs: [
+        {
+          name: 'HTML',
+          selected: false,
+        },
+        {
+          name: 'CSS',
+          selected: false,
+        },
+        {
+          name: 'JavaScript',
+          selected: false,
+        },
+      ]
     }
   },
   mounted() {
@@ -636,6 +660,56 @@ nav button {
   border-radius: 5px;
   width: 100%;
   font-size: 150%;
+}
+
+.select-inputs {
+  display: flex;
+}
+
+.select-option {
+  padding: 0 2rem 1rem 1rem !important;
+  border: 2px solid var(--overlay);
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+
+.select-option:hover {
+  cursor: pointer;
+  background-color: var(--overlay);
+}
+
+.select-option:hover  p {
+  color: var(--base);
+}
+
+.select-inputs .selected-circ {
+  --dim: 10px;
+
+  height: var(--dim);
+  width: var(--dim);
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.5);
+  background-color: transparent;
+  padding: 0;
+}
+
+.select-inputs .selected-circ:hover {
+  background-color: var(--base);
+  border-color: var(--base);
+  color: var(--overlay);
+}
+
+.select-inputs .selected-circ.active {
+  background-color: var(--overlay);
+  border-color: var(--overlay);
+}
+
+.select-option:hover .selected-circ {
+  background-color: var(--overlay);
+}
+
+.select-option:hover .selected-circ.active {
+  background-color: var(--base);
 }
 
 * {
