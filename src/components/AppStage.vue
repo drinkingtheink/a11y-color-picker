@@ -470,7 +470,7 @@ h1, h2, h3, h4, h5, p, span, div {
   right: 4rem;
   background-color: var(--overlay, rgba(0,0,0,0.7));
   padding: 1rem 1rem 0.5rem 1rem;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   transform: scale(0.85);
 }
 
