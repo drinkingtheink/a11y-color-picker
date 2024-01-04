@@ -1,5 +1,5 @@
 <template>
-  <div class="info">
+  <div class="info-links">
       <div v-for="link in info" :key="link.link">
           <a :href="link.link">{{ link.title }}</a>
       </div>
@@ -29,7 +29,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -466,8 +466,33 @@ h1, h2, h3, h4, h5, p, span, div {
 <style>
 .info-display {
   position: absolute;
-  top: 2rem;
-  right: 20%;
+  top: -10px;
+  right: 4rem;
+  background-color: var(--overlay, #666);
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-radius: 10px;
+  transform: scale(0.9);
+}
+
+.info-display a {
+  color: #eaeaea;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.dark .info-display a {
+  color: #222;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-left: 5px solid transparent;
+}
+
+.info-display a:hover {
+  color: yellow;
+}
+
+.dark .info-display a:hover {
+  color: var(--base);
 }
 
 .v-enter-active,
