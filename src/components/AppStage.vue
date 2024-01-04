@@ -667,10 +667,11 @@ nav button {
 }
 
 .select-option {
-  padding: 0 2rem 1rem 1rem !important;
+  padding: 0 4rem 1rem 1rem !important;
   border: 2px solid var(--overlay);
   border-radius: 10px;
   margin-right: 1rem;
+  font-size: 120%;
 }
 
 .select-option:hover {
@@ -697,6 +698,10 @@ nav button {
   background-color: var(--base);
   border-color: var(--base);
   color: var(--overlay);
+}
+
+.dark .select-inputs .selected-circ {
+  border: 2px solid rgba(255,255,255,0.5);
 }
 
 .select-inputs .selected-circ.active {
