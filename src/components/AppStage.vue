@@ -468,7 +468,7 @@ h1, h2, h3, h4, h5, p, span, div {
   position: absolute;
   top: -10px;
   right: 4rem;
-  background-color: var(--overlay, #666);
+  background-color: var(--overlay, rgba(0,0,0,0.7));
   padding: 1rem 1rem 0.5rem 1rem;
   border-radius: 10px;
   transform: scale(0.9);
@@ -478,6 +478,7 @@ h1, h2, h3, h4, h5, p, span, div {
   color: #eaeaea;
   text-decoration: none;
   padding: 5px 10px;
+  display: block;
 }
 
 .dark .info-display a {
@@ -489,10 +490,11 @@ h1, h2, h3, h4, h5, p, span, div {
 
 .info-display a:hover {
   color: yellow;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .dark .info-display a:hover {
-  color: var(--base);
+  color: white;
 }
 
 .v-enter-active,

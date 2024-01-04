@@ -1,7 +1,11 @@
 <template>
   <div class="info-links">
       <div v-for="link in info" :key="link.link">
-          <a :href="link.link">{{ link.title }}</a>
+          <a 
+            :href="link.link"
+            target="_blank"
+            
+        >{{ link.title }}</a>
       </div>
   </div>
 </template>
