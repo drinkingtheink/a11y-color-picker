@@ -51,7 +51,7 @@
       <section class="color-select overlay-select">
         <p>OVERLAY: <span class="value-display">{{ overlay }}</span></p>
         <div v-if="overlay" class="swatch" :style="`background-color: ${overlay}`">
-          <button class="smol" @click="overlay = null">X</button>
+          <button class="smol" @click="removeOverlay">X</button>
         </div>
         <code v-show="!!overlay" class="code">{{ overlayCss }}</code>
         <div v-if="!!base && !overlay" class="select-overlay-prompt">
@@ -252,10 +252,10 @@ export default {
       ],
     }
   },
-  mounted() {
-    this.checkForQueryStrings();
+  beforeMount() {
     this.userMinThresh = this.a11yThresh;
-
+  },
+  mounted() {
     window.addEventListener('load', this.findColorPicker, false);
     window.addEventListener('scroll', this.handleScroll);
 
@@ -265,6 +265,7 @@ export default {
 
     this.makeBaseToOverlayPalette(this.base, this.overlay);
 
+    this.checkForQueryStrings();
   },
   unmounted() {
     window.removeEventListener('load', this.findColorPicker, false);
@@ -274,10 +275,17 @@ export default {
     base() {
       let root = document.documentElement;
       root.style.setProperty('--base', this.base);
+
+      const queryParams = new URLSearchParams(window.location.search);
+      const overlayQuery = queryParams.get('overlay');
       
-      if (this.wipeOverlay) { 
+      if (this.wipeOverlay && !overlayQuery) { 
         this.overlay = null;
         this.wipeOverlay = true;
+      }
+
+      if (overlayQuery) {
+        this.overlay = overlayQuery;
       }
 
       if (!!this.base && !!this.overlay) {
@@ -293,16 +301,19 @@ export default {
       }
     },
     userMinThresh() {
-			this.overlay = null;
+      this.overlay = null;
     },
 		comparisonColor() {
 			this.getColor();
 		},
   },
   methods: {
+    removeOverlay() {
+      this.overlay = null;
+      this.updateOverlayQueryString(null);
+    },
     makeBaseToOverlayPalette(base, overlay) {
-      
-      if (base && overlay) {
+      if (!!base && !!overlay && overlay !== 'null') {
         const baseColor = chroma(String(base));
         const overlayColor = chroma(String(overlay)); 
 
@@ -359,6 +370,7 @@ export default {
       this.base = currOverlay;
       this.updateBaseQueryString(currOverlay);
       this.handleOverlayColorChange(currBase, this.contrast);
+      this.wipeOverlay = true;
     },
     copyCssBlob() {
       navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
@@ -392,12 +404,19 @@ export default {
       const baseQuery = queryParams.get('base');
       const overlayQuery = queryParams.get('overlay');
 
+      this.wipeOverlay = false;
+
       if (baseQuery !== 'undefined') {
         this.base = baseQuery;
+        this.wipeOverlay = true;
       }
 
       if (overlayQuery !== 'undefined') {
         this.overlay = overlayQuery;
+      }
+
+      if (baseQuery !== 'undefined' && overlayQuery !== 'undefined') {
+        this.contrast = chroma.contrast(this.base, this.overlay).toFixed(1);
       }
     },
     removeQueryStrings() {
