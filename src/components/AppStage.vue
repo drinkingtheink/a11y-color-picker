@@ -179,7 +179,7 @@
     </div>
   </section>
 
-  <section class="about-links">
+  <section v-show="(!base && !overlay) || everythingIsInPlace" class="about-links">
     <a href="https://github.com/drinkingtheink/a11y-color-picker" target="_blank" rel=”noreferrer”>About This App</a>
     <a href="http://jasonmharrison.info/" target="_blank" rel=”noreferrer”>About The Author</a>
   </section>
