@@ -385,10 +385,10 @@ export default {
       }
     },
     handleBaseColorChange(event) {
+      this.overlay = null;
       this.base = event.target.value;
       this.updateBaseQueryString(this.base);
-
-      this.overlay = null;
+      this.updateOverlayQueryString(null);
     },
     handleOverlayColorChange(color, contrast) {
       this.overlay = color;
