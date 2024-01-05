@@ -193,7 +193,7 @@
           v-show="!!overlay" 
           class="swatch" 
           :style="`background-color: ${overlay}`" 
-          @click="scollToTop()" 
+          @click="scrollToTop()" 
         />
       </section>
       
@@ -414,7 +414,7 @@ export default {
 
       if (swatch) swatch.click();
 
-      this.scollToTop();
+      this.scrollToTop();
     },
     scrollToTop() {
       window.scrollTo(0,0);
