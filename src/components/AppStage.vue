@@ -1,6 +1,6 @@
 <template>
   <main :class="[lightOrDark(base)]">
-    <Info class="info-display" />
+    <Info class="info-display" :info="info" />
     <Lines v-show="everythingIsInPlace" class="lines-bg" />
     <div class="top-border" />
     <h1>A11y Color Combinator</h1>
@@ -126,7 +126,6 @@
               :style="`background-color: ${color}`"
             />
         </div>
-        
 
         <section class="pull-quote">
           <blockquote>
@@ -163,12 +162,19 @@
           </div>
         </section>
       </div>
+
+      <section class="links">
+          <h3>Helpful Links:</h3>
+          <a 
+            v-for="link in info" 
+            :key="link.link" 
+            :href="link.link"
+          >{{ link.title }}</a>
+        </section>
     </div>
 
     <div class="gallery-grid">
-      <div class="blurb-2">
-        <p>{{ blurb2 }}</p>
-      </div>
+      <p class="blurb-2">{{ blurb2 }}</p>
     </div>
   </section>
 
@@ -248,6 +254,20 @@ export default {
         {
           name: 'JavaScript',
           selected: false,
+        },
+      ],
+      info: [
+        {
+          title: 'Understanding Use of Color (WCAG)',
+          link: 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
+        },
+        {
+          title: 'About Color Contrast (MDN)',
+          link: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable/Color_contrast',
+        },
+        {
+          title: 'About Use of Color/Perceivable (MDN)',
+          link: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable/Use_of_color',
         },
       ],
     }
@@ -518,6 +538,29 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+.blurb-2 {
+  font-size: 160%;
+}
+
+.links {
+  width: 100%;
+  padding-left: 3rem;
+}
+
+.links a {
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  padding: 1rem;
+  font-size: 140%;
+  color: var(--overlay);
+}
+
+.links a:hover {
+  background-color: var(--overlay);
+  color: var(--base);
+}
+
 .info-display {
   position: absolute;
   top: -10px;
@@ -831,6 +874,7 @@ h1 {
   padding-bottom: 20rem;
   position: relative;
   z-index: 1;
+  color: var(--overlay);
 }
 
 .gallery p, .gallery span, .gallery div {
