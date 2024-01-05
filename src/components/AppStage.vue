@@ -415,7 +415,7 @@ export default {
         this.overlay = overlayQuery;
       }
 
-      if (baseQuery !== 'undefined' && overlayQuery !== 'undefined') {
+      if (baseQuery !== 'undefined' && overlayQuery !== 'undefined' && overlayQuery !== null) {
         this.contrast = chroma.contrast(this.base, this.overlay).toFixed(1);
       }
     },
@@ -931,12 +931,17 @@ button {
   text-transform: uppercase;
   font-size: 1.2rem;
   border-radius: var(--borRad);
+  border: 4px solid rgba(255,255,255,0.5);
 }
 
 button:hover {
   cursor: pointer;
   color: #222;
   background-color: white;
+}
+
+.dark button {
+  border-color: rgba(255,255,255,0.5);
 }
 
 .color-config {
