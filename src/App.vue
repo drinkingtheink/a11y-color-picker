@@ -38,7 +38,7 @@ html {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, .boldtype {
+h1, h2, h3, h4, h5, .boldtype, .pull-quote p {
   font-family: 'Russo One', sans-serif;
 }
 </style>

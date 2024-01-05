@@ -88,7 +88,7 @@
     :class="lightOrDark(base)"
   >
 
-    <h2>Examples Gallery</h2>
+    <h2>Example Content Application</h2>
 
     <div class="gallery-grid">
 
@@ -1079,10 +1079,9 @@ button.mini:hover {
   left: -10%;
   width: 130%;
   height: 80rem;
-  transform: rotate(-5deg);
+  transform: rotate(-9deg);
   z-index: 0;
   pointer-events: none;
-  opacity: 0.3;
   padding: 2rem 0;
   border-top: 10px solid var(--overlay);
   border-bottom: 10px solid var(--overlay);
