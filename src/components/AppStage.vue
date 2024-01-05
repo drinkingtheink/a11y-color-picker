@@ -555,6 +555,7 @@ h1, h2, h3, h4, h5, p, span, div {
   display: flex;
   justify-content: center;
   padding-bottom: 10rem;
+  transform: scale(0.75);
 }
 
 .about-links a {
