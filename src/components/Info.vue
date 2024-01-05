@@ -50,7 +50,7 @@ export default {
   height: var(--iconDim);
   width: var(--iconDim);
   border-radius: 50%;
-  background-color: var(--overlay);
+  background-color: var(--overlay, rgba(0,0,0,0.9));
   position: absolute;
   left: -3rem;
   top: 25px;
@@ -63,6 +63,8 @@ export default {
 }
 
 .icon span {
-  color: var(--base, #222);
+  color: var(--base, white);
+  margin-top: 12px;
+  margin-left: -10px;
 }
 </style>
