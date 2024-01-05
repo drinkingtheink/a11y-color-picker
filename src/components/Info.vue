@@ -4,7 +4,7 @@
           <a 
             :href="link.link"
             target="_blank"
-            
+            rel=”noreferrer”
         >{{ link.title }}</a>
       </div>
   </div>

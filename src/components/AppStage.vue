@@ -169,6 +169,7 @@
             v-for="link in info" 
             :key="link.link" 
             :href="link.link"
+            target="_blank" rel=”noreferrer”
           >{{ link.title }}</a>
         </section>
     </div>
@@ -178,6 +179,10 @@
     </div>
   </section>
 
+  <section class="about-links">
+    <a href="https://github.com/drinkingtheink/a11y-color-picker" target="_blank" rel=”noreferrer”>About This App</a>
+    <a href="http://jasonmharrison.info/" target="_blank" rel=”noreferrer”>About The Author</a>
+  </section>
   <Transition>
     <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
       <p>BASE:</p>
