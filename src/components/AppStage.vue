@@ -253,6 +253,7 @@ export default {
     }
   },
   mounted() {
+    this.checkForQueryStrings();
     this.userMinThresh = this.a11yThresh;
 
     window.addEventListener('load', this.findColorPicker, false);
@@ -322,6 +323,7 @@ export default {
     clearColors() {
       this.overlay = null;
       this.base = null;
+      this.removeQueryStrings();
     },
     findColorPicker() {
       let colorPicker;
@@ -340,12 +342,14 @@ export default {
     },
     handleBaseColorChange(event) {
       this.base = event.target.value;
+      this.updateBaseQueryString(this.base);
 
       this.overlay = null;
     },
     handleOverlayColorChange(color, contrast) {
       this.overlay = color;
       this.contrast = contrast;
+      this.updateOverlayQueryString(this.overlay);
     },
     swapBaseOverlay() {
       const currOverlay = String(this.overlay);
@@ -353,6 +357,7 @@ export default {
 
       this.wipeOverlay = false;
       this.base = currOverlay;
+      this.updateBaseQueryString(currOverlay);
       this.handleOverlayColorChange(currBase, this.contrast);
     },
     copyCssBlob() {
@@ -377,10 +382,37 @@ export default {
 
       if (swatch) swatch.click();
 
-      this.scrollToTop();
+      this.scollToTop();
     },
-    scollToTop() {
+    scrollToTop() {
       window.scrollTo(0,0);
+    },
+    checkForQueryStrings() {
+      const queryParams = new URLSearchParams(window.location.search);
+      const baseQuery = queryParams.get('base');
+      const overlayQuery = queryParams.get('overlay');
+
+      if (baseQuery !== 'undefined') {
+        this.base = baseQuery;
+      }
+
+      if (overlayQuery !== 'undefined') {
+        this.overlay = overlayQuery;
+      }
+    },
+    removeQueryStrings() {
+      this.updateBaseQueryString(null);
+      this.updateOverlayQueryString(null);
+    },
+    updateBaseQueryString(val) {
+      let queryParams = new URLSearchParams(window.location.search);
+      queryParams.set(`base`, val);
+      history.replaceState(null, null, `?${queryParams.toString()}`);
+    },
+    updateOverlayQueryString(val) {
+      let queryParams = new URLSearchParams(window.location.search);
+      queryParams.set(`overlay`, val);
+      history.replaceState(null, null, `?${queryParams.toString()}`);
     },
     lightOrDark(color) {
       if (!color) {
@@ -774,6 +806,7 @@ h1 {
 
 .gallery {
   width: 80%;
+  max-width: 1200px;
   margin: 0 auto;
   padding-top: 2rem;
   padding-bottom: 20rem;
