@@ -560,10 +560,10 @@ h1, h2, h3, h4, h5, p, span, div {
 .about-links a {
   padding: 1rem 2rem;
   text-decoration: none;
-  border-left: 10px solid var(--overlay, #222);
-  color: var(--overlay, #222);
+  border-left: 10px solid var(--base, #222);
+  color: var(--base, #222);
   margin-right: 1rem;
-  background-color: var(--base, rgba(0,0,0,0.7));
+  background-color: var(--overlay, rgba(0,0,0,0.2));
 }
 
 .dark .about-links a {
