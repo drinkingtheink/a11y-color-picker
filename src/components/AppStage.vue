@@ -551,6 +551,36 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+.about-links {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10rem;
+}
+
+.about-links a {
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-left: 10px solid var(--overlay, #222);
+  color: var(--overlay, #222);
+  margin-right: 1rem;
+  background-color: var(--base, rgba(0,0,0,0.7));
+}
+
+.dark .about-links a {
+ color: white;
+ border-color: white;
+}
+
+.about-links a:hover {
+  background-color: var(--overlay, rgba(0,0,0,1));
+  color: white;
+}
+
+.dark .about-links a:hover {
+  background-color: var(--overlay, rgba(255,255,255,0.8));
+  color: var(--base, #222);
+}
+
 .blurb-2 {
   font-size: 160%;
 }
@@ -884,7 +914,7 @@ h1 {
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 2rem;
-  padding-bottom: 20rem;
+  padding-bottom: 2rem;
   position: relative;
   z-index: 1;
   color: var(--overlay);
