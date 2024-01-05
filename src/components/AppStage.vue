@@ -49,11 +49,11 @@
       <p :class="[{ 'hide-me-vis': !base || !overlay }, { 'womp-womp' : contrast < a11yThresh}]">CONTRAST: <span class="contrast-value">{{ !!base && !!overlay ? contrast : `??` }}</span></p>
 
       <section class="color-select overlay-select">
-        <p>OVERLAY: <span class="value-display">{{ overlay }}</span></p>
-        <div v-if="overlay" class="swatch" :style="`background-color: ${overlay}`">
+        <p>OVERLAY: <span class="value-display" v-show="!!overlay && overlay !== 'null'">{{ overlay }}</span></p>
+        <div v-if="overlay && overlay !== 'null'" class="swatch" :style="`background-color: ${overlay}`">
           <button class="smol" @click="removeOverlay">X</button>
         </div>
-        <code v-show="!!overlay" class="code">{{ overlayCss }}</code>
+        <code v-show="!!overlay && overlay !== 'null'" class="code">{{ overlayCss }}</code>
         <div v-if="!!base && !overlay" class="select-overlay-prompt">
           <p>Select a color from the generated options.</p>
         </div>
@@ -435,7 +435,7 @@ export default {
         this.overlay = overlayQuery;
       }
 
-      if (baseQuery !== 'undefined' && overlayQuery !== 'undefined' && overlayQuery !== null) {
+      if (baseQuery !== 'undefined' && overlayQuery !== 'undefined' && overlayQuery !== null && this.everythingIsInPlace) {
         this.contrast = chroma.contrast(this.base, this.overlay).toFixed(1);
       }
     },
