@@ -445,7 +445,11 @@ export default {
       }
 
       if (overlayQuery !== 'undefined') {
-        this.overlay = overlayQuery;
+        if (overlayQuery === 'null') {
+          this.overlay = null;
+        } else {
+          this.overlay = overlayQuery;
+        }
       }
 
       if (this.base && this.base !== 'null' && this.overlay && this.overlay !== 'null') {
