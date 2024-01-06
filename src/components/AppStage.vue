@@ -183,6 +183,7 @@
     <a href="https://github.com/drinkingtheink/a11y-color-picker" target="_blank" rel=”noreferrer”>About This App</a>
     <a href="http://jasonmharrison.info/" target="_blank" rel=”noreferrer”>About The Author</a>
   </section>
+  
   <Transition>
     <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
       <p>BASE:</p>
@@ -211,12 +212,15 @@
       </div>
     </nav>
   </Transition>
+  
+  <HelpModal v-if="showHelpModal" />
 </template>
 
 <script>
 import chroma from "chroma-js";
 import ColorGen from './ColorGen.vue';
 import Info from './Info.vue';
+import HelpModal from './HelpModal.vue';
 import Graphs from './illu/Graphs.vue';
 import Lines from './illu/Lines.vue';
 
@@ -230,6 +234,7 @@ export default {
     Graphs,
     Lines,
     Info,
+    HelpModal,
   },
   data() {
     return {
@@ -246,6 +251,8 @@ export default {
       currentRandom: null,
       colorPickerInst: null,
       showBottomNav: false,
+      seconds: 0,
+      showHelpModal: true,
       baseToOverlayPalette: [],
       langs: [
         {
@@ -440,7 +447,12 @@ export default {
       this.wipeOverlay = false;
 
       if (baseQuery !== 'undefined') {
-        this.base = baseQuery;
+        if (baseQuery === 'null') {
+          this.base = null;
+        } else {
+          this.base = baseQuery;
+        }
+
         this.wipeOverlay = true;
       }
 
