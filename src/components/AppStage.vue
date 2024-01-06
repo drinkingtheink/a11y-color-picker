@@ -183,7 +183,7 @@
 
   <section v-show="(!base && !overlay) || everythingIsInPlace" class="about-links">
     <a href="https://github.com/drinkingtheink/a11y-color-picker" target="_blank" rel=”noreferrer”>About This App</a>
-    <a href="http://jasonmharrison.info/" target="_blank" rel=”noreferrer”>About The Author</a>
+    <a href="https://www.drinkingtheink.com/?topic=web" target="_blank" rel=”noreferrer”>About The Author</a>
   </section>
   
   <Transition>
