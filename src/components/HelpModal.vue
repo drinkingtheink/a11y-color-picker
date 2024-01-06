@@ -9,8 +9,11 @@
 
           <p>The best thing to do is select a different color. If you choose a color closer to the extreme corners of the color wheel (see outlined areas in green), you're more likely to find matches for your preferred minimum contrast quicker.</p> 
 
-          <img src="../assets/color-wheel-areas.png" alt="These areas of the color wheel offer the easiest to find color options at most contrast levels." />
-          
+          <figure>
+            <img src="../assets/color-wheel-areas.png" alt="These areas of the color wheel offer the easiest to find color options at most contrast levels." />
+            <figcaption>These areas of the color spectrum will produce more combo possibilities. This is true of any color, not just the blue spectrum, shown here.</figcaption>
+          </figure>
+
           <p>If you choose colors in the mid-range, it's harder to find contrasting colors.</p>
       
         <div class="modal-actions">
