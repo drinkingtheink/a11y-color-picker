@@ -57,7 +57,11 @@ export default {
   box-shadow: 0px 6px 9px 2px rgba(0,0,0,0.5);
 }
 
-.modal-content p, h1, h2, h3, span {
+.modal-content p, 
+.modal-content h1, 
+.modal-content h2, 
+.modal-content h3, 
+.modal-content span {
   text-align: left;
 }
 
