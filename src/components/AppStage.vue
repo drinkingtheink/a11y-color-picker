@@ -214,7 +214,9 @@
     </nav>
   </Transition>
   
-  <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
+  <transition name='move' appear>
+    <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
+  </transition>
 </template>
 
 <script>
@@ -568,6 +570,19 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+/* ---------------------------------- */
+.v-move,
+.v-enter-active,
+.v-leave-active {
+  transition: 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 .about-links {
   display: flex;
   justify-content: center;

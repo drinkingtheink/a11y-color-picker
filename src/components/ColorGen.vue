@@ -8,14 +8,16 @@
 				<span class="cont">Contrast <i class="arrow right"></i></span>
 			</div>
 			<Tile 
-				v-for="color in countArr" 
+				v-for="color,index in countArr" 
 				:key="color" 
 				:a11yThresh="a11yThresh" 
 				:comparisonColor="selectedColor" 
 				:reColor="reColor"
 				:userMinThresh="userMinThresh"
 				:lightOrDark="lightOrDark"
+        :index="index"
 				@colorSelected="handleTileSelection"
+        @settleTile="settleTile"
 			>
 			</Tile>
 		</section>
@@ -27,26 +29,27 @@
 
 <script>
 import Tile from './Tile.vue';
+import chroma from "chroma-js";
 
 export default {
   name: 'ColorGen',
   props: {
     count: {
-		type: Number,
-		default: 6,
-	},
-	selectedColor: {
-		type: String,
-	},
-	a11yThresh: {
-		type: Number,
-	},
-	userMinThresh: {
-		type: Number,
-	},
-	lightOrDark: {
-		type: Function,
-	},
+      type: Number,
+      default: 6,
+    },
+    selectedColor: {
+      type: String,
+    },
+    a11yThresh: {
+      type: Number,
+    },
+    userMinThresh: {
+      type: Number,
+    },
+    lightOrDark: {
+      type: Function,
+    },
   },
 	components: {
     Tile
@@ -55,15 +58,26 @@ export default {
     return {
 			countArr: [],
 			reColor: false,
+      seconds: 0,
     }
   },
 	mounted() {
 		for(let i = 0; i < this.count; i++){
-			this.countArr.push(`color-space-${i}`);
+      const newEntry = {
+        name: `color-space-${i}`,
+        color: null,
+        settled: false,
+      }
+			this.countArr.push(newEntry);
 		}
 	},
 	watch: {
     reColor() {
+      this.countArr.forEach((col) => {
+        col.settled = false;
+        col.color = null;
+      })
+
 			setTimeout(() => {
 				this.reColor = false;
 			}, 100);
@@ -79,6 +93,10 @@ export default {
 		showHelpModal() {
 			this.$emit('showHelpModal');
 		},
+    settleTile(tileColor, tileIndex) {
+      this.countArr[tileIndex].settled = true;
+      this.countArr[tileIndex].color = chroma(tileColor).hex();
+    }
 	},
 }
 </script>

@@ -38,6 +38,7 @@ export default {
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+  font-size: 120%;
 }
 
 .modal-content {

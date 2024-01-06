@@ -30,6 +30,9 @@ export default {
 		lightOrDark: {
 			type: Function,
 		},
+    index: {
+      type: Number,
+    },
   },
 	data() {
 		return {
@@ -42,6 +45,10 @@ export default {
 				setTimeout(() => {
 					this.getColor();
 				}, 100);
+			}
+
+      if (this.contrast && this.contrast >= this.userMinThresh) {
+				this.$emit('settleTile', this.myColor, this.index);
 			}
     },
 		comparisonColor() {
