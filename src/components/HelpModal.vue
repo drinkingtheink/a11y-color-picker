@@ -7,7 +7,11 @@
 
           <h3>Don't want to wait? No problem.</h3>
 
-          <p>The best thing to do is select a different color. If you choose a color closer to the extremes of the color wheel, you're more likely to find matches for your preferred minimum contrast quicker. If you choose colors in the mid-range, it's harder to find contrasting colors.</p>
+          <p>The best thing to do is select a different color. If you choose a color closer to the extreme corners of the color wheel (see outlined areas in green), you're more likely to find matches for your preferred minimum contrast quicker.</p> 
+
+          <img src="../assets/color-wheel-areas.png" alt="These areas of the color wheel offer the easiest to find color options at most contrast levels." />
+          
+          <p>If you choose colors in the mid-range, it's harder to find contrasting colors.</p>
       
         <div class="modal-actions">
           <button @click="emitClose()">Close Modal</button>
@@ -43,7 +47,7 @@ export default {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 2rem 4rem;
   border: 1px solid #888;
   width: 50vw;
@@ -51,5 +55,10 @@ export default {
 
 .modal-actions {
     padding-top: 2rem;
+}
+
+.modal img {
+  max-width: 70%;
+  margin: 0 auto;
 }
 </style>
