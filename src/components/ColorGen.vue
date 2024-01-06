@@ -1,6 +1,6 @@
 <template>
   <div class="color-generator">
-    <h3 class="options-header">Generated Overlay Color Options:</h3>
+    <h3 class="options-header">Overlay options based on your set minimum contrast:</h3>
 
 		<section class="color-output">
 			<div class="annotation">
@@ -22,22 +22,19 @@
 			</Tile>
 		</section>
 
-		<button @click="reColor = true">Redo Colors</button>
+		<button @click="redoColors">Redo Colors</button>
 		<button @click="showHelpModal">Help</button>
   </div>
 </template>
 
 <script>
 import Tile from './Tile.vue';
-import chroma from "chroma-js";
+
+const tileCount = 6;
 
 export default {
   name: 'ColorGen',
   props: {
-    count: {
-      type: Number,
-      default: 6,
-    },
     selectedColor: {
       type: String,
     },
@@ -50,34 +47,34 @@ export default {
     lightOrDark: {
       type: Function,
     },
+    cuePollForTiles: {
+      type: Boolean,
+    },
   },
 	components: {
-    Tile
+    Tile,
   },
   data() {
     return {
 			countArr: [],
 			reColor: false,
       seconds: 0,
+      settledTiles: [],
+      pollingForTiles: false,
     }
   },
 	mounted() {
-		for(let i = 0; i < this.count; i++){
+		for(let i = 0; i < tileCount; i++){
       const newEntry = {
         name: `color-space-${i}`,
-        color: null,
-        settled: false,
       }
 			this.countArr.push(newEntry);
 		}
+
+    this.pollForSettledTiles();
 	},
 	watch: {
     reColor() {
-      this.countArr.forEach((col) => {
-        col.settled = false;
-        col.color = null;
-      })
-
 			setTimeout(() => {
 				this.reColor = false;
 			}, 100);
@@ -85,8 +82,28 @@ export default {
 		comparisonColor() {
 			this.getColor();
 		},
+    selectedColor() {
+      this.settledTiles = [];
+      this.pollForSettledTiles();
+    },
+    cuePollForTiles() {
+      if (this.cuePollForTiles) {
+        this.settledTiles = [];
+        this.pollForSettledTiles();
+      }
+    },
+    seconds() {
+      if (this.seconds === 10) {
+        this.showHelpModal();
+      }
+    }
   },
 	methods: {
+    redoColors() {
+      this.reColor = true;
+      this.settledTiles = [];
+      this.pollForSettledTiles();
+    },
 		handleTileSelection(color, contrast) {
 			this.$emit('setOverlay', color, contrast);
 		},
@@ -94,9 +111,26 @@ export default {
 			this.$emit('showHelpModal');
 		},
     settleTile(tileColor, tileIndex) {
-      this.countArr[tileIndex].settled = true;
-      this.countArr[tileIndex].color = chroma(tileColor).hex();
-    }
+      this.settledTiles.push({
+        tile: tileIndex,
+        color: tileColor,
+      })
+    },
+    incrementSecondsAndPoll() {
+      this.seconds++;
+
+      this.pollForSettledTiles();
+    },
+    pollForSettledTiles() {
+      this.pollingForTiles = true;
+
+      if (this.settledTiles && this.settledTiles.length === tileCount) {
+        this.pollingForTiles = false;
+        this.seconds = 0;
+      } else if (this.settledTiles && this.settledTiles.length < tileCount) {
+        setTimeout(this.incrementSecondsAndPoll, 1000);
+      }
+    },
 	},
 }
 </script>
