@@ -13,7 +13,7 @@ I found many online a11y color tools that would give you one option at a time. A
 1. Select a minimum contrast level (cannot go below WCAG minimum of 4.4)
 2. Select a base color from the color spectrum input or the random suggestions
 3. Select an overlay color from the opptions generated using Chroma.js that adhere to the minimum contrast set in Step 1
-4. Copy the CSS and you're on your way to making your content consumable by more people!
+4. Copy the CSS and you're on your way to making your content consumable by more end users
 
 
 ## This is a Vue.js Project:

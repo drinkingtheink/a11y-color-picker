@@ -1,7 +1,7 @@
 <template>
   <div class="modal help">
       <div class="modal-content">
-          <h2>Having trouble finding overlay color combos?</h2>
+          <h2>Having trouble finding color combos?</h2>
 
           <p>It is possible to select colors that may take a while to find matches for. Color choice in combination with a high minimum contrast can cause prolonged color searches. But, rest assured, eventually one will be found.</p>
 
@@ -54,6 +54,11 @@ export default {
   padding: 2rem 4rem;
   border: 1px solid #888;
   width: 50vw;
+  box-shadow: 0px 6px 9px 2px rgba(0,0,0,0.5);
+}
+
+.modal-content p, h1, h2, h3, span {
+  text-align: left;
 }
 
 .modal-actions {
