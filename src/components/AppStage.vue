@@ -152,6 +152,7 @@
             v-for="lang in langs" 
             :key="lang.name"
             @click="lang.selected = !lang.selected"
+            tabindex=0
           >
             <p>{{ lang.name }}</p>
 

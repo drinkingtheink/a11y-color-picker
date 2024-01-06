@@ -93,7 +93,7 @@ export default {
       }
     },
     seconds() {
-      if (this.seconds === 10) {
+      if (this.seconds === 8) {
         this.showHelpModal();
       }
     }

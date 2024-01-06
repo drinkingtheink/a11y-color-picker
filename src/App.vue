@@ -41,4 +41,8 @@ html {
 h1, h2, h3, h4, h5, .boldtype, .pull-quote p {
   font-family: 'Russo One', sans-serif;
 }
+
+a:hover {
+  cursor: pointer !important;
+}
 </style>
