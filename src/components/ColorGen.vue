@@ -21,6 +21,7 @@
 		</section>
 
 		<button @click="reColor = true">Redo Colors</button>
+		<button @click="showHelpModal">Help</button>
   </div>
 </template>
 
@@ -75,7 +76,10 @@ export default {
 		handleTileSelection(color, contrast) {
 			this.$emit('setOverlay', color, contrast);
 		},
-	}
+		showHelpModal() {
+			this.$emit('showHelpModal');
+		},
+	},
 }
 </script>
 
@@ -130,5 +134,9 @@ export default {
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.color-generator button {
+	margin-right: 10px;
 }
 </style>

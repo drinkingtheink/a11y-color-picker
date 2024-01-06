@@ -77,7 +77,8 @@
     :a11yThresh="a11yThresh" 
     :userMinThresh="userMinThresh"
     :lightOrDark="lightOrDark"
-    @setOverlay="handleOverlayColorChange" 
+    @setOverlay="handleOverlayColorChange"
+    @showHelpModal="showHelpModal = true"
   />
   
   <div class="halftone background" v-show="everythingIsInPlace" />
@@ -213,7 +214,7 @@
     </nav>
   </Transition>
   
-  <HelpModal v-if="showHelpModal" />
+  <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
 </template>
 
 <script>
@@ -252,7 +253,7 @@ export default {
       colorPickerInst: null,
       showBottomNav: false,
       seconds: 0,
-      showHelpModal: true,
+      showHelpModal: false,
       baseToOverlayPalette: [],
       langs: [
         {
