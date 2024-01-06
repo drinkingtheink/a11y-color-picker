@@ -218,6 +218,8 @@
   <transition name='move' appear>
     <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
   </transition>
+
+  <link rel="preload" as="image" href="../assets/color-wheel-areas.png">
 </template>
 
 <script>
