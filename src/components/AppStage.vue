@@ -65,7 +65,7 @@
       <section class="color-actions">
         <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
         <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
-        <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+        <button v-show="!!base" id="swap" @click="clearColors()">Clear Colors</button>
       </section>
     </div>
   </main>
@@ -581,7 +581,7 @@ h1, h2, h3, h4, h5, p, span, div {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateX(10px);
 }
 
 .about-links {
