@@ -14,7 +14,7 @@
           <p>If you choose colors in the mid-range, it's harder to find contrasting colors.</p>
       
         <div class="modal-actions">
-          <button @click="emitClose()">Close Modal</button>
+          <button @click="emitClose()">Back to Colors</button>
       </div>  
     </div>
   </div>
@@ -60,5 +60,7 @@ export default {
 .modal img {
   max-width: 70%;
   margin: 0 auto;
+  border: 5px solid rgba(0,0,0,0.4);
+  border-radius: 20px;
 }
 </style>
