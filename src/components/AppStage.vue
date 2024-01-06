@@ -163,6 +163,8 @@
             />
           </div>
         </section>
+
+        <button>Press Me</button>
       </div>
 
       <section class="links">
@@ -873,6 +875,22 @@ nav button {
   font-size: 150%;
 }
 
+.fake-form button {
+  padding: 1rem 4rem;
+  border: 10px solid var(--overlay);
+  color: var(--base);
+  background-color: var(--overlay);
+  text-transform: uppercase;
+  font-size: 120%;
+  margin-top: 1rem;
+}
+
+.fake-form button:hover {
+  color: var(--overlay);
+  background-color: var(--base);
+  border-color: var(--overlay);
+}
+
 .select-inputs {
   display: flex;
 }
@@ -886,7 +904,6 @@ nav button {
 }
 
 .select-option:hover {
-  cursor: pointer;
   background-color: var(--overlay);
 }
 
@@ -1058,7 +1075,6 @@ button {
 }
 
 button:hover {
-  cursor: pointer;
   color: #222;
   background-color: white;
 }
