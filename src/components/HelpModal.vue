@@ -3,7 +3,7 @@
       <div class="modal-content">
           <h2>Having trouble finding color combos?</h2>
 
-          <p>It is possible to select colors that may take a while to find matches for. Color choice in combination with a high minimum contrast can cause prolonged color searches. But, rest assured, eventually one will be found.</p>
+          <p>It is possible to select colors that may take a while to find matches. Color choice, in combination with a high minimum contrast, can cause prolonged color searches. But, rest assured, eventually one will be found.</p>
 
           <h3>Don't want to wait? No problem.</h3>
 

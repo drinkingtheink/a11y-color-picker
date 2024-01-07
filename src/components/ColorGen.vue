@@ -124,7 +124,7 @@ export default {
     pollForSettledTiles() {
       this.pollingForTiles = true;
 
-      if (this.settledTiles && this.settledTiles.length === tileCount) {
+      if (this.settledTiles && this.settledTiles.length === (tileCount -2)) {
         this.pollingForTiles = false;
         this.seconds = 0;
       } else if (this.settledTiles && this.settledTiles.length < tileCount) {
