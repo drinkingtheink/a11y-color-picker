@@ -227,7 +227,9 @@
     </div>
   </nav>
   
-  <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
+  <Transition name="slide-fade">
+    <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
+  </Transition>
 
   <link rel="preload" as="image" href="../assets/color-wheel-areas.png">
 </template>
@@ -583,6 +585,20 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
 .about-links {
   display: flex;
   justify-content: center;
