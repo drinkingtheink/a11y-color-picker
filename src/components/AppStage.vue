@@ -172,7 +172,7 @@
         <a 
           href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
         >Contrast Success Criterion (WCAG)</a>
-        
+
         <a 
           v-for="link in info" 
           :key="link.link" 
@@ -200,38 +200,34 @@
     <a href="https://www.drinkingtheink.com/?topic=web" target="_blank" rel=”noreferrer”>About The Author</a>
   </section>
   
-  <Transition>
-    <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
-      <p>BASE:</p>
+  <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
+    <p>BASE:</p>
+    
+    <section class="base">
+      <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+    </section>
+    
+    <p>OVERLAY:</p>
+    
+    <section class="overlay">
+      <p 
+        v-show="!!overlay" 
+        class="swatch" 
+        :style="`background-color: ${overlay}`" 
+        @click="scrollToTop()" 
+      />
+    </section>
+    
+    <div>
+      <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
       
-      <section class="base">
-        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
-      </section>
-      
-      <p>OVERLAY:</p>
-      
-      <section class="overlay">
-        <p 
-          v-show="!!overlay" 
-          class="swatch" 
-          :style="`background-color: ${overlay}`" 
-          @click="scrollToTop()" 
-        />
-      </section>
-      
-      <div>
-        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
-        
-        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+      <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
 
-        <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
-      </div>
-    </nav>
-  </Transition>
+      <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+    </div>
+  </nav>
   
-  <transition name='move' appear>
-    <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
-  </transition>
+  <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
 
   <link rel="preload" as="image" href="../assets/color-wheel-areas.png">
 </template>
@@ -587,19 +583,6 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
-/* ---------------------------------- */
-.v-move,
-.v-enter-active,
-.v-leave-active {
-  transition: 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  transform: translateX(10px);
-}
-
 .about-links {
   display: flex;
   justify-content: center;
