@@ -200,32 +200,34 @@
     <a href="https://www.drinkingtheink.com/?topic=web" target="_blank" rel=”noreferrer”>About The Author</a>
   </section>
   
-  <nav v-show="!!base && !!overlay && showBottomNav" class="sticky">
-    <p>BASE:</p>
-    
-    <section class="base">
-      <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
-    </section>
-    
-    <p>OVERLAY:</p>
-    
-    <section class="overlay">
-      <p 
-        v-show="!!overlay" 
-        class="swatch" 
-        :style="`background-color: ${overlay}`" 
-        @click="scrollToTop()" 
-      />
-    </section>
-    
-    <div>
-      <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
+  <Transition name="slide-up">
+    <nav v-show="!!base && !!overlay && showBottomNav">
+      <p>BASE:</p>
       
-      <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
+      <section class="base">
+        <p v-show="!!base" class="swatch" :style="`background-color: ${base}`" @click="handleBaseClick" />
+      </section>
+      
+      <p>OVERLAY:</p>
+      
+      <section class="overlay">
+        <p 
+          v-show="!!overlay" 
+          class="swatch" 
+          :style="`background-color: ${overlay}`" 
+          @click="scrollToTop()" 
+        />
+      </section>
+      
+      <div>
+        <button v-show="!!base && !!overlay" id="copy-css" @click="copyCssBlob">{{ copyCssVerb }}</button>
+        
+        <button v-show="!!base && !!overlay" id="swap" @click="swapBaseOverlay">Swap Colors</button>
 
-      <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
-    </div>
-  </nav>
+        <button v-show="!!base && !!overlay" id="swap" @click="clearColors()">Clear Colors</button>
+      </div>
+    </nav>
+  </Transition>
   
   <Transition name="slide-fade">
     <HelpModal v-if="showHelpModal" @closeModal="showHelpModal = false;" />
@@ -585,6 +587,20 @@ h1, h2, h3, h4, h5, p, span, div {
 </script>
 
 <style>
+.slide-up-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-up-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+  transform: translateY(400px);
+  opacity: 0;
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
@@ -716,12 +732,13 @@ nav {
   z-index: 2;
   height: 80px;
   border-radius: 10px 10px 0 0;
-  border: 1px solid #222;
+  border: 2px solid #222;
   display: flex;
   justify-content: center;
   left: 50%;
   bottom: 1.5rem;
   transform: translate(-50%, 50%);
+  box-shadow: var(--shad);
 }
 
 nav * {
@@ -743,6 +760,7 @@ nav button {
 :root {
   --borRad: 20px;
   --panelBg: #eaeaea;
+  --shad: 0 5px 5px 0px rgba(0,0,0,0.5);
 }
 
 .gradients {
@@ -1104,7 +1122,7 @@ button:hover {
   background: var(--panelBg);
   padding: 0 2rem 1rem 2rem;
   border-radius: var(--borRad);
-  box-shadow: 0 5px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: var(--shad);
   position: relative;
   z-index: 1;
 }

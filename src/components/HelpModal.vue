@@ -7,7 +7,7 @@
 
           <h3>Don't want to wait? No problem.</h3>
 
-          <p>The best thing to do is select a different color or adjust your minimum contrast (if you've made changes). If you choose a color closer to the extreme corners of the color wheel (see outlined areas in green), you're more likely to find matches for your preferred minimum contrast quicker.</p> 
+          <p>The best thing to do is select a different color or adjust your minimum contrast (if you've made changes). If you choose a color closer to the extreme NW and SE corners of the color wheel (see outlined areas in green), you're more likely to find matches for your preferred minimum contrast quicker.</p> 
 
           <figure>
             <img src="../assets/color-wheel-areas.png" alt="These areas of the color wheel offer the easiest to find color options at most contrast levels." />
