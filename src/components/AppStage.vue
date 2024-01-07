@@ -168,14 +168,26 @@
       </div>
 
       <section class="links">
-          <h3>Helpful Links:</h3>
-          <a 
-            v-for="link in info" 
-            :key="link.link" 
-            :href="link.link"
-            target="_blank" rel=”noreferrer”
-          >{{ link.title }}</a>
-        </section>
+        <h3>Helpful Links:</h3>
+        <a 
+          href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+        >Contrast Success Criterion (WCAG)</a>
+        
+        <a 
+          v-for="link in info" 
+          :key="link.link" 
+          :href="link.link"
+          target="_blank" rel=”noreferrer”
+        >{{ link.title }}</a>
+        
+        <a 
+          href="https://www.a11yproject.com/posts/what-is-color-contrast/"
+        >What is Color Contast? (The A11y Project)</a>
+
+        <a 
+          href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_Colors_and_Luminance"
+        >Colors and Luminance (MDN)</a>
+      </section>
     </div>
 
     <div class="gallery-grid">
@@ -990,6 +1002,7 @@ h1 {
   border-bottom: 7px solid var(--overlay);
   padding-bottom: 0.5rem;
   padding-top: 0;
+  margin-top: 0;
 }
 
 .gallery div {

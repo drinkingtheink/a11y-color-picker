@@ -11,7 +11,7 @@
 
           <figure>
             <img src="../assets/color-wheel-areas.png" alt="These areas of the color wheel offer the easiest to find color options at most contrast levels." />
-            <figcaption>These areas of the color spectrum will produce more combo possibilities. This is true of any color, not just the part of the light-blue spectrum shown here.</figcaption>
+            <figcaption>These areas of the color spectrum (outlined in green) will produce more combo possibilities. This is true of any color, not just the part of the light-blue spectrum shown here.</figcaption>
           </figure>
 
           <p>If you choose colors in the mid-range, it's harder to find contrasting colors.</p>
