@@ -1,6 +1,6 @@
 <template>
   <div class="color-generator">
-    <h3 class="options-header">Overlay options based on your set minimum contrast:</h3>
+    <h3 class="options-header">Overlay options based on your minimum contrast:</h3>
 
 		<section class="color-output">
 			<div class="annotation">
