@@ -907,6 +907,7 @@ nav button {
 .fake-form button {
   padding: 1rem 4rem;
   border: 10px solid var(--overlay);
+  border-color: var(--overlay) !important;
   color: var(--base);
   background-color: var(--overlay);
   text-transform: uppercase;
