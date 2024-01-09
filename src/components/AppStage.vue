@@ -728,6 +728,7 @@ nav {
   padding: 10px 2rem 0 2rem;
   text-align: center;
   width: 50%;
+  max-width: 1200;
   position: fixed;
   z-index: 2;
   height: 80px;
