@@ -261,7 +261,7 @@ export default {
       base: null,
       overlay: null,
       contrast: null,
-      a11yThresh: 4.4,
+      a11yThresh: 4.5,
       userMinThresh: null,
       copyCssVerb: 'copy CSS',
       blurb1: '"While color contrast is often primarily an aesthetic choice, the use of color on a website pertains to using color to communicate information. WCAG guideline 1.4.1 on the use of color requires that "color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element."',
